@@ -1,0 +1,1012 @@
+[22:00:10] hb_init: starting libhb thread
+HandBrake svn5611 (2013062601) - Linux x86_64 - http://handbrake.fr
+1 CPU detected
+Opening /local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS...
+[22:00:10] hb_scan: path=/local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS, title_index=0
+libbluray/bdnav/index_parse.c:162: indx_parse(): error opening /local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS/BDMV/index.bdmv
+libbluray/bdnav/index_parse.c:162: indx_parse(): error opening /local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS/BDMV/BACKUP/index.bdmv
+libbluray/bluray.c:1725: nav_get_title_list(/local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS) failed (0x7f66e8000900)
+[22:00:10] bd: not a bd - trying as a stream/file instead
+libdvdnav: Using dvdnav version 4.1.3
+libdvdread: Using libdvdcss version 1.2.12 for DVD access
+libdvdread: Couldn't find device name.
+libdvdnav: Can't read name block. Probably not a DVD-ROM device.
+libdvdnav: Unable to find map file '/home/martyn/.dvdnav/.map'
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+libdvdread: Using libdvdcss version 1.2.12 for DVD access
+libdvdread: Couldn't find device name.
+[22:00:10] scan: DVD has 33 title(s)
+[22:00:10] scan: scanning title 1
+[22:00:10] scan: opening IFO for VTS 1
+[22:00:10] scan: duration is 00:00:24 (24166 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e801b950
+[22:00:10] scan: vts=1, ttn=1, cells=0->0, blocks=0->10475, 10476 blocks
+[22:00:10] scan: checking subtitle 1
+[22:00:10] scan: id=0x20bd, lang=Unknown, 3cc=und ext=0
+[22:00:10] scan: title 1 has 1 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->10475 (10476), 24166 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 2
+[22:00:10] scan: opening IFO for VTS 2
+[22:00:10] scan: duration is 00:00:24 (24166 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e801cd70
+[22:00:10] scan: vts=2, ttn=1, cells=0->0, blocks=0->10493, 10494 blocks
+[22:00:10] scan: checking subtitle 1
+[22:00:10] scan: id=0x20bd, lang=Unknown, 3cc=und ext=0
+[22:00:10] scan: title 2 has 1 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->10493 (10494), 24166 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 3
+[22:00:10] scan: opening IFO for VTS 3
+[22:00:10] scan: duration is 00:00:24 (24166 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e801e0c0
+[22:00:10] scan: vts=3, ttn=1, cells=0->0, blocks=0->10494, 10495 blocks
+[22:00:10] scan: checking subtitle 1
+[22:00:10] scan: id=0x20bd, lang=Unknown, 3cc=und ext=0
+[22:00:10] scan: title 3 has 1 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->10494 (10495), 24166 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 4
+[22:00:10] scan: opening IFO for VTS 4
+[22:00:10] scan: duration is 00:00:24 (24166 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e801f430
+[22:00:10] scan: vts=4, ttn=1, cells=0->0, blocks=0->10480, 10481 blocks
+[22:00:10] scan: checking subtitle 1
+[22:00:10] scan: id=0x20bd, lang=Unknown, 3cc=und ext=0
+[22:00:10] scan: title 4 has 1 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->10480 (10481), 24166 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 5
+[22:00:10] scan: opening IFO for VTS 5
+[22:00:10] scan: duration is 00:04:07 (247934 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80207c0
+[22:00:10] scan: vts=5, ttn=1, cells=0->1, blocks=0->132969, 132970 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 5 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->132359 (132360), 246500 ms
+[22:00:10] scan: chap 2 c=1->1, b=132360->132969 (610), 1433 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 6
+[22:00:10] scan: opening IFO for VTS 6
+[22:00:10] scan: duration is 00:04:08 (248533 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e8021460
+[22:00:10] scan: vts=6, ttn=1, cells=0->1, blocks=0->132773, 132774 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 6 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->132210 (132211), 247000 ms
+[22:00:10] scan: chap 2 c=1->1, b=132211->132773 (563), 1533 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 7
+[22:00:10] scan: opening IFO for VTS 7
+[22:00:10] scan: duration is 00:04:58 (298100 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e8021460
+[22:00:10] scan: vts=7, ttn=1, cells=0->1, blocks=0->156940, 156941 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 7 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->156507 (156508), 297000 ms
+[22:00:10] scan: chap 2 c=1->1, b=156508->156940 (433), 1100 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 8
+[22:00:10] scan: opening IFO for VTS 8
+[22:00:10] scan: duration is 00:07:51 (471533 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e801c040
+[22:00:10] scan: vts=8, ttn=1, cells=0->1, blocks=0->244758, 244759 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 8 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->244409 (244410), 470500 ms
+[22:00:10] scan: chap 2 c=1->1, b=244410->244758 (349), 1033 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 9
+[22:00:10] scan: opening IFO for VTS 9
+[22:00:10] scan: duration is 00:05:17 (317266 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80214f0
+[22:00:10] scan: vts=9, ttn=1, cells=0->1, blocks=0->164936, 164937 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 9 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->164417 (164418), 316000 ms
+[22:00:10] scan: chap 2 c=1->1, b=164418->164936 (519), 1266 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 10
+[22:00:10] scan: opening IFO for VTS 10
+[22:00:10] scan: duration is 00:03:58 (238367 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e801bd30
+[22:00:10] scan: vts=10, ttn=1, cells=0->1, blocks=0->122459, 122460 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 10 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->121989 (121990), 237000 ms
+[22:00:10] scan: chap 2 c=1->1, b=121990->122459 (470), 1367 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 11
+[22:00:10] scan: opening IFO for VTS 11
+[22:00:10] scan: duration is 00:03:40 (220367 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e801c1d0
+[22:00:10] scan: vts=11, ttn=1, cells=0->1, blocks=0->113808, 113809 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 11 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->113349 (113350), 219000 ms
+[22:00:10] scan: chap 2 c=1->1, b=113350->113808 (459), 1367 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 12
+[22:00:10] scan: opening IFO for VTS 12
+[22:00:10] scan: duration is 00:04:21 (261900 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e806fc40
+[22:00:10] scan: vts=12, ttn=1, cells=0->1, blocks=0->120408, 120409 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 12 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->120387 (120388), 261500 ms
+[22:00:10] scan: chap 2 c=1->1, b=120388->120408 (21), 400 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 13
+[22:00:10] scan: opening IFO for VTS 13
+[22:00:10] scan: duration is 00:03:53 (233367 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80a3670
+[22:00:10] scan: vts=13, ttn=1, cells=0->1, blocks=0->121181, 121182 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 13 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->120550 (120551), 232000 ms
+[22:00:10] scan: chap 2 c=1->1, b=120551->121181 (631), 1367 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 14
+[22:00:10] scan: opening IFO for VTS 14
+[22:00:10] scan: duration is 00:04:16 (256333 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e806f860
+[22:00:10] scan: vts=14, ttn=1, cells=0->1, blocks=0->133168, 133169 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 14 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->132595 (132596), 255000 ms
+[22:00:10] scan: chap 2 c=1->1, b=132596->133168 (573), 1333 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 15
+[22:00:10] scan: opening IFO for VTS 15
+[22:00:10] scan: duration is 00:04:59 (299100 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80a3690
+[22:00:10] scan: vts=15, ttn=1, cells=0->1, blocks=0->153600, 153601 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 15 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->153133 (153134), 297500 ms
+[22:00:10] scan: chap 2 c=1->1, b=153134->153600 (467), 1600 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 16
+[22:00:10] scan: opening IFO for VTS 16
+[22:00:10] scan: duration is 00:04:57 (297300 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e81255b0
+[22:00:10] scan: vts=16, ttn=1, cells=0->1, blocks=0->153937, 153938 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 16 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->153465 (153466), 295500 ms
+[22:00:10] scan: chap 2 c=1->1, b=153466->153937 (472), 1800 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 17
+[22:00:10] scan: opening IFO for VTS 17
+[22:00:10] scan: duration is 00:04:05 (245734 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e806f8f0
+[22:00:10] scan: vts=17, ttn=1, cells=0->1, blocks=0->123615, 123616 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 17 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->122917 (122918), 244000 ms
+[22:00:10] scan: chap 2 c=1->1, b=122918->123615 (698), 1734 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 18
+[22:00:10] scan: opening IFO for VTS 18
+[22:00:10] scan: duration is 00:04:13 (253533 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80a3440
+[22:00:10] scan: vts=18, ttn=1, cells=0->1, blocks=0->131566, 131567 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 18 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->131171 (131172), 252500 ms
+[22:00:10] scan: chap 2 c=1->1, b=131172->131566 (395), 1033 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 19
+[22:00:10] scan: opening IFO for VTS 19
+[22:00:10] scan: duration is 00:00:43 (43734 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80a3440
+[22:00:10] scan: vts=19, ttn=1, cells=0->1, blocks=0->19795, 19796 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 19 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->19183 (19184), 42500 ms
+[22:00:10] scan: chap 2 c=1->1, b=19184->19795 (612), 1233 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 20
+[22:00:10] scan: opening IFO for VTS 20
+[22:00:10] scan: duration is 00:02:45 (165233 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80a34a0
+[22:00:10] scan: vts=20, ttn=1, cells=0->1, blocks=0->83718, 83719 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 20 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->83102 (83103), 164000 ms
+[22:00:10] scan: chap 2 c=1->1, b=83103->83718 (616), 1233 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 21
+[22:00:10] scan: opening IFO for VTS 21
+[22:00:10] scan: duration is 00:20:11 (1211567 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e813f460
+[22:00:10] scan: vts=21, ttn=1, cells=0->1, blocks=0->615595, 615596 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 21 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->614789 (614790), 1210000 ms
+[22:00:10] scan: chap 2 c=1->1, b=614790->615595 (806), 1567 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 22
+[22:00:10] scan: opening IFO for VTS 22
+[22:00:10] scan: duration is 00:03:39 (219900 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e806f860
+[22:00:10] scan: vts=22, ttn=1, cells=0->1, blocks=0->111070, 111071 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 22 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->111052 (111053), 219500 ms
+[22:00:10] scan: chap 2 c=1->1, b=111053->111070 (18), 400 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 23
+[22:00:10] scan: opening IFO for VTS 23
+[22:00:10] scan: duration is 00:02:59 (179400 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e806fa60
+[22:00:10] scan: vts=23, ttn=1, cells=0->1, blocks=0->90242, 90243 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 23 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->90175 (90176), 179000 ms
+[22:00:10] scan: chap 2 c=1->1, b=90176->90242 (67), 400 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 24
+[22:00:10] scan: opening IFO for VTS 24
+[22:00:10] scan: duration is 00:03:02 (182400 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80bd4e0
+[22:00:10] scan: vts=24, ttn=1, cells=0->1, blocks=0->91694, 91695 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 24 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->91538 (91539), 181500 ms
+[22:00:10] scan: chap 2 c=1->1, b=91539->91694 (156), 900 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 25
+[22:00:10] scan: opening IFO for VTS 25
+[22:00:10] scan: duration is 00:04:22 (262934 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e80bd4e0
+[22:00:10] scan: vts=25, ttn=1, cells=0->1, blocks=0->132615, 132616 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 25 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->132559 (132560), 262500 ms
+[22:00:10] scan: chap 2 c=1->1, b=132560->132615 (56), 433 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 26
+[22:00:10] scan: opening IFO for VTS 26
+[22:00:10] scan: duration is 00:01:26 (86900 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e813f600
+[22:00:10] scan: vts=26, ttn=1, cells=0->1, blocks=0->43587, 43588 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 26 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->43552 (43553), 86500 ms
+[22:00:10] scan: chap 2 c=1->1, b=43553->43587 (35), 400 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 27
+[22:00:10] scan: opening IFO for VTS 27
+[22:00:10] scan: duration is 00:02:02 (122400 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e81b7b00
+[22:00:10] scan: vts=27, ttn=1, cells=0->1, blocks=0->61357, 61358 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 27 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->61308 (61309), 122000 ms
+[22:00:10] scan: chap 2 c=1->1, b=61309->61357 (49), 400 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 28
+[22:00:10] scan: opening IFO for VTS 28
+[22:00:10] scan: duration is 00:01:50 (110066 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e81b51f0
+[22:00:10] scan: vts=28, ttn=1, cells=0->1, blocks=0->54864, 54865 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 28 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->54735 (54736), 109000 ms
+[22:00:10] scan: chap 2 c=1->1, b=54736->54864 (129), 1066 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 29
+[22:00:10] scan: opening IFO for VTS 29
+[22:00:10] scan: duration is 00:03:09 (189900 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e81b5210
+[22:00:10] scan: vts=29, ttn=1, cells=0->1, blocks=0->95459, 95460 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 29 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->95408 (95409), 189500 ms
+[22:00:10] scan: chap 2 c=1->1, b=95409->95459 (51), 400 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 30
+[22:00:10] scan: opening IFO for VTS 30
+[22:00:10] scan: duration is 00:02:46 (166433 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e81b7ec0
+[22:00:10] scan: vts=30, ttn=1, cells=0->1, blocks=0->83370, 83371 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 30 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->83189 (83190), 165000 ms
+[22:00:10] scan: chap 2 c=1->1, b=83190->83370 (181), 1433 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 31
+[22:00:10] scan: opening IFO for VTS 31
+[22:00:10] scan: duration is 00:01:11 (71934 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e81b7b20
+[22:00:10] scan: vts=31, ttn=1, cells=0->1, blocks=0->35879, 35880 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 31 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->35748 (35749), 71000 ms
+[22:00:10] scan: chap 2 c=1->1, b=35749->35879 (131), 934 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 32
+[22:00:10] scan: opening IFO for VTS 32
+[22:00:10] scan: duration is 00:03:25 (205000 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e826a1e0
+[22:00:10] scan: vts=32, ttn=1, cells=0->1, blocks=0->103240, 103241 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 32 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->103164 (103165), 204500 ms
+[22:00:10] scan: chap 2 c=1->1, b=103165->103240 (76), 500 ms
+[22:00:10] scan: aspect = 1.33333
+[22:00:10] scan: scanning title 33
+[22:00:10] scan: opening IFO for VTS 33
+[22:00:10] scan: duration is 00:00:44 (44400 ms)
+[22:00:10] pgc_id: 1, pgn: 1: pgc: 0x7f66e826a200
+[22:00:10] scan: vts=33, ttn=1, cells=0->1, blocks=0->19676, 19677 blocks
+[22:00:10] scan: checking audio 1
+[22:00:10] scan: id=0x80bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: checking audio 2
+[22:00:10] scan: id=0x81bd, lang=Unknown (AC3), 3cc=und ext=0
+[22:00:10] scan: title 33 has 2 chapters
+[22:00:10] scan: chap 1 c=0->0, b=0->19608 (19609), 44000 ms
+[22:00:10] scan: chap 2 c=1->1, b=19609->19676 (68), 400 ms
+[22:00:10] scan: aspect = 1.33333
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+Scanning title 33 of 33, 50.00 %[22:00:10] scan: decoding previews for title 1
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:10] scan: title angle(s) 1
+Scanning title 1 of 33, preview 10, 51.52 %[22:00:11] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/8/8, aspect 4:3, PAR 8:9
+[22:00:11] scan: decoding previews for title 2
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:11] scan: title angle(s) 1
+Scanning title 2 of 33, preview 9, 52.88 %[22:00:11] scan: 10 previews, 720x480, 29.970 fps, autocrop = 0/2/8/8, aspect 4:3, PAR 8:9
+[22:00:11] scan: decoding previews for title 3
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:11] scan: title angle(s) 1
+Scanning title 3 of 33, preview 8, 54.24 %[22:00:11] scan: 10 previews, 720x480, 29.970 fps, autocrop = 0/2/8/8, aspect 4:3, PAR 8:9
+[22:00:11] scan: decoding previews for title 4
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:11] scan: title angle(s) 1
+Scanning title 4 of 33, preview 5, 55.30 %[22:00:12] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/8/8, aspect 4:3, PAR 8:9
+[22:00:12] scan: decoding previews for title 5
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:12] scan: title angle(s) 1
+Scanning title 5 of 33, preview 1, 56.21 %[22:00:12] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:12] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (2.0 ch)
+Scanning title 5 of 33, preview 10, 57.58 %[22:00:12] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/14/10, aspect 4:3, PAR 8:9
+[22:00:12] scan: decoding previews for title 6
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:12] scan: title angle(s) 1
+[22:00:12] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:12] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (2.0 ch)
+Scanning title 6 of 33, preview 6, 58.48 %[22:00:12] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/22, aspect 4:3, PAR 8:9
+[22:00:12] scan: decoding previews for title 7
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:12] scan: title angle(s) 1
+[22:00:13] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:13] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (2.0 ch)
+Scanning title 7 of 33, preview 3, 59.55 %[22:00:13] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/14/12, aspect 4:3, PAR 8:9
+[22:00:13] scan: decoding previews for title 8
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:13] scan: title angle(s) 1
+Scanning title 8 of 33, preview 1, 60.76 %[22:00:13] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:13] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 8 of 33, preview 7, 61.67 %[22:00:13] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/4/16/16, aspect 4:3, PAR 8:9
+[22:00:13] scan: decoding previews for title 9
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:13] scan: title angle(s) 1
+[22:00:13] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:13] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+Scanning title 9 of 33, preview 4, 62.73 %[22:00:14] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/14, aspect 4:3, PAR 8:9
+[22:00:14] scan: decoding previews for title 10
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:14] scan: title angle(s) 1
+Scanning title 10 of 33, preview 1, 63.79 %[22:00:14] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:14] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+Scanning title 10 of 33, preview 9, 65.00 %[22:00:14] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/26, aspect 4:3, PAR 8:9
+[22:00:14] scan: decoding previews for title 11
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:14] scan: title angle(s) 1
+[22:00:14] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:14] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+Scanning title 11 of 33, preview 5, 65.91 %[22:00:15] scan: 10 previews, 720x480, 29.970 fps, autocrop = 62/62/10/24, aspect 4:3, PAR 8:9
+[22:00:15] scan: decoding previews for title 12
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:15] scan: title angle(s) 1
+[22:00:15] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:15] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 12 of 33, preview 2, 66.97 %[22:00:15] scan: 10 previews, 720x480, 29.970 fps, autocrop = 56/54/10/24, aspect 4:3, PAR 8:9
+[22:00:15] scan: decoding previews for title 13
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:15] scan: title angle(s) 1
+Scanning title 13 of 33, preview 1, 68.33 %[22:00:15] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:15] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 13 of 33, preview 8, 69.39 %[22:00:15] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/24, aspect 4:3, PAR 8:9
+[22:00:15] scan: decoding previews for title 14
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:15] scan: title angle(s) 1
+[22:00:16] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:16] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 14 of 33, preview 4, 70.30 %[22:00:16] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/14, aspect 4:3, PAR 8:9
+[22:00:16] scan: decoding previews for title 15
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:16] scan: title angle(s) 1
+Scanning title 15 of 33, preview 1, 71.36 %[22:00:16] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:16] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+Scanning title 15 of 33, preview 10, 72.73 %[22:00:16] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/28, aspect 4:3, PAR 8:9
+[22:00:16] scan: decoding previews for title 16
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:16] scan: title angle(s) 1
+[22:00:16] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:16] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 16 of 33, preview 5, 73.48 %[22:00:17] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/16, aspect 4:3, PAR 8:9
+[22:00:17] scan: decoding previews for title 17
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:17] scan: title angle(s) 1
+[22:00:17] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:17] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+Scanning title 17 of 33, preview 2, 74.55 %Scanning title 17 of 33, preview 10, 75.76 %[22:00:17] scan: 10 previews, 720x480, 29.970 fps, autocrop = 46/46/10/12, aspect 4:3, PAR 8:9
+[22:00:17] scan: decoding previews for title 18
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:17] scan: title angle(s) 1
+[22:00:17] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=448000 Unknown (AC3) (5.1 ch)
+[22:00:17] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 18 of 33, preview 7, 76.82 %[22:00:18] scan: 10 previews, 720x480, 29.970 fps, autocrop = 40/40/10/12, aspect 4:3, PAR 8:9
+[22:00:18] scan: decoding previews for title 19
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:18] scan: title angle(s) 1
+[22:00:18] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 19 of 33, preview 8, 78.48 %[22:00:18] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:18] scan: decoding previews for title 20
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:18] scan: title angle(s) 1
+[22:00:18] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:18] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 20 of 33, preview 5, 79.55 %[22:00:18] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/8/8, aspect 4:3, PAR 8:9
+[22:00:18] scan: decoding previews for title 21
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:18] scan: title angle(s) 1
+Scanning title 21 of 33, preview 1, 80.45 %[22:00:18] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:18] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 21 of 33, preview 7, 81.36 %[22:00:19] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/8/8, aspect 4:3, PAR 8:9
+[22:00:19] scan: decoding previews for title 22
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:19] scan: title angle(s) 1
+[22:00:19] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:19] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 22 of 33, preview 4, 82.42 %[22:00:19] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:19] scan: decoding previews for title 23
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:19] scan: title angle(s) 1
+Scanning title 23 of 33, preview 1, 83.48 %[22:00:19] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:19] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:20] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:20] scan: decoding previews for title 24
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:20] scan: title angle(s) 1
+Scanning title 24 of 33, preview 1, 85.00 %[22:00:20] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:20] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 24 of 33, preview 8, 86.06 %[22:00:20] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:20] scan: decoding previews for title 25
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:20] scan: title angle(s) 1
+[22:00:20] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:20] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 25 of 33, preview 5, 87.12 %[22:00:20] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:20] scan: decoding previews for title 26
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:20] scan: title angle(s) 1
+Scanning title 26 of 33, preview 1, 88.03 %[22:00:20] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:20] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 26 of 33, preview 10, 89.39 %[22:00:21] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:21] scan: decoding previews for title 27
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:21] scan: title angle(s) 1
+[22:00:21] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:21] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 27 of 33, preview 6, 90.30 %[22:00:21] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:21] scan: decoding previews for title 28
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:21] scan: title angle(s) 1
+[22:00:21] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:21] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 28 of 33, preview 1, 91.06 %Scanning title 28 of 33, preview 10, 92.42 %[22:00:22] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:22] scan: decoding previews for title 29
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:22] scan: title angle(s) 1
+[22:00:22] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:22] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 29 of 33, preview 6, 93.33 %[22:00:22] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:22] scan: decoding previews for title 30
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:22] scan: title angle(s) 1
+[22:00:22] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:22] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 30 of 33, preview 2, 94.24 %[22:00:23] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:23] scan: decoding previews for title 31
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:23] scan: title angle(s) 1
+Scanning title 31 of 33, preview 1, 95.61 %[22:00:23] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:23] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 31 of 33, preview 3, 95.91 %[22:00:23] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:23] scan: decoding previews for title 32
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:23] scan: title angle(s) 1
+Scanning title 32 of 33, preview 1, 97.12 %[22:00:23] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:23] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 32 of 33, preview 8, 98.18 %[22:00:24] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:24] scan: decoding previews for title 33
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[22:00:24] scan: title angle(s) 1
+[22:00:24] scan: audio 0x80bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+[22:00:24] scan: audio 0x81bd: AC-3, rate=48000Hz, bitrate=192000 Unknown (AC3) (2.0 ch)
+Scanning title 33 of 33, preview 6, 99.39 %[22:00:24] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/10/8, aspect 4:3, PAR 8:9
+[22:00:24] libhb: scan thread found 33 valid title(s)
++ title 1:
+  + vts 1, ttn 1, cells 0->0 (10476 blocks)
+  + duration: 00:00:24
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/8/8
+  + chapters:
+    + 1: cells 0->0, 10476 blocks, duration 00:00:24
+  + audio tracks:
+  + subtitle tracks:
+    + 1, Unknown (iso639-2: und) (Bitmap)(VOBSUB)
++ title 2:
+  + vts 2, ttn 1, cells 0->0 (10494 blocks)
+  + duration: 00:00:24
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 0/2/8/8
+  + chapters:
+    + 1: cells 0->0, 10494 blocks, duration 00:00:24
+  + audio tracks:
+  + subtitle tracks:
+    + 1, Unknown (iso639-2: und) (Bitmap)(VOBSUB)
++ title 3:
+  + vts 3, ttn 1, cells 0->0 (10495 blocks)
+  + duration: 00:00:24
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 0/2/8/8
+  + chapters:
+    + 1: cells 0->0, 10495 blocks, duration 00:00:24
+  + audio tracks:
+  + subtitle tracks:
+    + 1, Unknown (iso639-2: und) (Bitmap)(VOBSUB)
++ title 4:
+  + vts 4, ttn 1, cells 0->0 (10481 blocks)
+  + duration: 00:00:24
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/8/8
+  + chapters:
+    + 1: cells 0->0, 10481 blocks, duration 00:00:24
+  + audio tracks:
+  + subtitle tracks:
+    + 1, Unknown (iso639-2: und) (Bitmap)(VOBSUB)
++ title 5:
+  + vts 5, ttn 1, cells 0->1 (132970 blocks)
+  + duration: 00:04:07
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/14/10
+  + chapters:
+    + 1: cells 0->0, 132360 blocks, duration 00:04:07
+    + 2: cells 1->1, 610 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 448000bps
+  + subtitle tracks:
++ title 6:
+  + vts 6, ttn 1, cells 0->1 (132774 blocks)
+  + duration: 00:04:08
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/22
+  + chapters:
+    + 1: cells 0->0, 132211 blocks, duration 00:04:07
+    + 2: cells 1->1, 563 blocks, duration 00:00:02
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 448000bps
+  + subtitle tracks:
++ title 7:
+  + vts 7, ttn 1, cells 0->1 (156941 blocks)
+  + duration: 00:04:58
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/14/12
+  + chapters:
+    + 1: cells 0->0, 156508 blocks, duration 00:04:57
+    + 2: cells 1->1, 433 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 448000bps
+  + subtitle tracks:
++ title 8:
+  + vts 8, ttn 1, cells 0->1 (244759 blocks)
+  + duration: 00:07:51
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/4/16/16
+  + chapters:
+    + 1: cells 0->0, 244410 blocks, duration 00:07:51
+    + 2: cells 1->1, 349 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 9:
+  + vts 9, ttn 1, cells 0->1 (164937 blocks)
+  + duration: 00:05:17
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/14
+  + chapters:
+    + 1: cells 0->0, 164418 blocks, duration 00:05:16
+    + 2: cells 1->1, 519 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 10:
+  + vts 10, ttn 1, cells 0->1 (122460 blocks)
+  + duration: 00:03:58
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/26
+  + chapters:
+    + 1: cells 0->0, 121990 blocks, duration 00:03:57
+    + 2: cells 1->1, 470 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 11:
+  + vts 11, ttn 1, cells 0->1 (113809 blocks)
+  + duration: 00:03:40
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 62/62/10/24
+  + chapters:
+    + 1: cells 0->0, 113350 blocks, duration 00:03:39
+    + 2: cells 1->1, 459 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 12:
+  + vts 12, ttn 1, cells 0->1 (120409 blocks)
+  + duration: 00:04:21
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 56/54/10/24
+  + chapters:
+    + 1: cells 0->0, 120388 blocks, duration 00:04:22
+    + 2: cells 1->1, 21 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 13:
+  + vts 13, ttn 1, cells 0->1 (121182 blocks)
+  + duration: 00:03:53
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/24
+  + chapters:
+    + 1: cells 0->0, 120551 blocks, duration 00:03:52
+    + 2: cells 1->1, 631 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 14:
+  + vts 14, ttn 1, cells 0->1 (133169 blocks)
+  + duration: 00:04:16
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/14
+  + chapters:
+    + 1: cells 0->0, 132596 blocks, duration 00:04:15
+    + 2: cells 1->1, 573 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 15:
+  + vts 15, ttn 1, cells 0->1 (153601 blocks)
+  + duration: 00:04:59
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/28
+  + chapters:
+    + 1: cells 0->0, 153134 blocks, duration 00:04:58
+    + 2: cells 1->1, 467 blocks, duration 00:00:02
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 16:
+  + vts 16, ttn 1, cells 0->1 (153938 blocks)
+  + duration: 00:04:57
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/16
+  + chapters:
+    + 1: cells 0->0, 153466 blocks, duration 00:04:56
+    + 2: cells 1->1, 472 blocks, duration 00:00:02
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 17:
+  + vts 17, ttn 1, cells 0->1 (123616 blocks)
+  + duration: 00:04:05
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 46/46/10/12
+  + chapters:
+    + 1: cells 0->0, 122918 blocks, duration 00:04:04
+    + 2: cells 1->1, 698 blocks, duration 00:00:02
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 18:
+  + vts 18, ttn 1, cells 0->1 (131567 blocks)
+  + duration: 00:04:13
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 40/40/10/12
+  + chapters:
+    + 1: cells 0->0, 131172 blocks, duration 00:04:13
+    + 2: cells 1->1, 395 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (5.1 ch) (iso639-2: und), 48000Hz, 448000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 19:
+  + vts 19, ttn 1, cells 0->1 (19796 blocks)
+  + duration: 00:00:43
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 19184 blocks, duration 00:00:43
+    + 2: cells 1->1, 612 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 20:
+  + vts 20, ttn 1, cells 0->1 (83719 blocks)
+  + duration: 00:02:45
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/8/8
+  + chapters:
+    + 1: cells 0->0, 83103 blocks, duration 00:02:44
+    + 2: cells 1->1, 616 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 21:
+  + vts 21, ttn 1, cells 0->1 (615596 blocks)
+  + duration: 00:20:11
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/8/8
+  + chapters:
+    + 1: cells 0->0, 614790 blocks, duration 00:20:10
+    + 2: cells 1->1, 806 blocks, duration 00:00:02
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 22:
+  + vts 22, ttn 1, cells 0->1 (111071 blocks)
+  + duration: 00:03:39
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 111053 blocks, duration 00:03:40
+    + 2: cells 1->1, 18 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 23:
+  + vts 23, ttn 1, cells 0->1 (90243 blocks)
+  + duration: 00:02:59
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 90176 blocks, duration 00:02:59
+    + 2: cells 1->1, 67 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 24:
+  + vts 24, ttn 1, cells 0->1 (91695 blocks)
+  + duration: 00:03:02
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 91539 blocks, duration 00:03:02
+    + 2: cells 1->1, 156 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 25:
+  + vts 25, ttn 1, cells 0->1 (132616 blocks)
+  + duration: 00:04:22
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 132560 blocks, duration 00:04:23
+    + 2: cells 1->1, 56 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 26:
+  + vts 26, ttn 1, cells 0->1 (43588 blocks)
+  + duration: 00:01:26
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 43553 blocks, duration 00:01:27
+    + 2: cells 1->1, 35 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 27:
+  + vts 27, ttn 1, cells 0->1 (61358 blocks)
+  + duration: 00:02:02
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 61309 blocks, duration 00:02:02
+    + 2: cells 1->1, 49 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 28:
+  + vts 28, ttn 1, cells 0->1 (54865 blocks)
+  + duration: 00:01:50
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 54736 blocks, duration 00:01:49
+    + 2: cells 1->1, 129 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 29:
+  + vts 29, ttn 1, cells 0->1 (95460 blocks)
+  + duration: 00:03:09
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 95409 blocks, duration 00:03:10
+    + 2: cells 1->1, 51 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 30:
+  + vts 30, ttn 1, cells 0->1 (83371 blocks)
+  + duration: 00:02:46
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 83190 blocks, duration 00:02:45
+    + 2: cells 1->1, 181 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 31:
+  + vts 31, ttn 1, cells 0->1 (35880 blocks)
+  + duration: 00:01:11
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 35749 blocks, duration 00:01:11
+    + 2: cells 1->1, 131 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 32:
+  + vts 32, ttn 1, cells 0->1 (103241 blocks)
+  + duration: 00:03:25
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 103165 blocks, duration 00:03:25
+    + 2: cells 1->1, 76 blocks, duration 00:00:01
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
++ title 33:
+  + vts 33, ttn 1, cells 0->1 (19677 blocks)
+  + duration: 00:00:44
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/10/8
+  + chapters:
+    + 1: cells 0->0, 19609 blocks, duration 00:00:44
+    + 2: cells 1->1, 68 blocks, duration 00:00:00
+  + audio tracks:
+    + 1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+    + 2, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps
+  + subtitle tracks:
+HandBrake has exited.

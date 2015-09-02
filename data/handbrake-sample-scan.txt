@@ -1,0 +1,44 @@
+[20:31:54] hb_init: starting libhb thread
+HandBrake svn5611 (2013062601) - Linux x86_64 - http://handbrake.fr
+1 CPU detected
+Opening /local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS...
+[20:31:54] hb_scan: path=/local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS, title_index=1
+libbluray/bdnav/index_parse.c:162: indx_parse(): error opening /local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS/BDMV/index.bdmv
+libbluray/bdnav/index_parse.c:162: indx_parse(): error opening /local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS/BDMV/BACKUP/index.bdmv
+libbluray/bluray.c:1725: nav_get_title_list(/local/martyn/Frankie Goes To Hollywood - Hard On (2003)/VIDEO_TS) failed (0x7fef84000900)
+[20:31:54] bd: not a bd - trying as a stream/file instead
+libdvdnav: Using dvdnav version 4.1.3
+libdvdread: Using libdvdcss version 1.2.12 for DVD access
+libdvdread: Couldn't find device name.
+libdvdnav: Can't read name block. Probably not a DVD-ROM device.
+libdvdnav: Unable to find map file '/home/martyn/.dvdnav/.map'
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+libdvdread: Using libdvdcss version 1.2.12 for DVD access
+libdvdread: Couldn't find device name.
+[20:31:54] scan: DVD has 33 title(s)
+[20:31:54] scan: scanning title 1
+[20:31:54] scan: opening IFO for VTS 1
+[20:31:54] scan: duration is 00:00:24 (24166 ms)
+[20:31:54] pgc_id: 1, pgn: 1: pgc: 0x7fef8401b950
+[20:31:54] scan: vts=1, ttn=1, cells=0->0, blocks=0->10475, 10476 blocks
+[20:31:54] scan: checking subtitle 1
+[20:31:54] scan: id=0x20bd, lang=Unknown, 3cc=und ext=0
+[20:31:54] scan: title 1 has 1 chapters
+[20:31:54] scan: chap 1 c=0->0, b=0->10475 (10476), 24166 ms
+[20:31:54] scan: aspect = 1.33333
+[20:31:54] scan: decoding previews for title 1
+libdvdnav: DVD disk reports itself with Region mask 0x00000000. Regions: 1 2 3 4 5 6 7 8
+[20:31:54] scan: title angle(s) 1
+[20:31:54] scan: 10 previews, 720x480, 29.970 fps, autocrop = 2/2/8/8, aspect 4:3, PAR 8:9
+[20:31:54] libhb: scan thread found 1 valid title(s)
++ title 1:
+  + vts 1, ttn 1, cells 0->0 (10476 blocks)
+  + duration: 00:00:24
+  + size: 720x480, pixel aspect: 8/9, display aspect: 1.33, 29.970 fps
+  + autocrop: 2/2/8/8
+  + chapters:
+    + 1: cells 0->0, 10476 blocks, duration 00:00:24
+  + audio tracks:
+  + subtitle tracks:
+    + 1, Unknown (iso639-2: und) (Bitmap)(VOBSUB)
+HandBrake has exited.
