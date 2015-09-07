@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 import Video.HandBrake.REMatch  ( REMatch(..), parseJSONString, toJSONString )
 
 -- aeson -------------------------------
