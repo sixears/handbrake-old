@@ -1,15 +1,12 @@
 #!/usr/local/ghc-7.10.1/bin/runhaskell -i/home/martyn/src/fluffy/src:/home/martyn/src/handbrake/src
--- #!/usr/local/ghc-7.10.1/bin/runhaskell -i/home/martyn/src/fluffy/src:/home/martyn/bin/hlib:/home/martyn/src/handbrake/src
 
 {-# LANGUAGE TemplateHaskell #-}
 
 -- base --------------------------------
 
 import Control.Monad  ( forM_ )
-import Data.Char      ( isDigit )
-import Data.List      ( findIndices, isPrefixOf )
-import Data.Word      ( Word8 )
-import System.IO  ( FilePath, IOMode( ReadMode ), openFile )
+import Data.List      ( findIndices )
+import System.IO      ( IOMode( ReadMode ), openFile )
 
 -- containers --------------------------
 
@@ -17,13 +14,13 @@ import qualified Data.Tree as T
 
 -- lens --------------------------------
 
-import Control.Lens  ( (&), (^.), (?~), (<>~), makeLenses )
+import Control.Lens  ( makeLenses )
 
 -- pipes imports -----------------------
 
-import Pipes  ( Consumer, Pipe, Producer, (>->) )
+import Pipes  ( Pipe, Producer, (>->) )
 
-import qualified Pipes.Prelude as P --  ( fold, filter, map )
+import qualified Pipes.Prelude as P
 
 -- transformers ------------------------
 
@@ -34,13 +31,12 @@ import Control.Monad.Trans.Class  ( lift )
 import Fluffy.Console.Getopt ( ArgArity(..), OptDesc(..)
                              , getOptions
                              )
-import Fluffy.Data.List        ( splitOn, splitOn2, splitOnL, stripPre )
-import Fluffy.Sys.Exit       ( handleDie, dieParse )
--- import Fluffy.Video.Handbrake.HBScan ( test7 )
+import Fluffy.Data.List      ( splitOn2, stripPre )
+import Fluffy.Sys.Exit       ( handleDie )
 
 -- handbrake ---------------------------
 
-import Video.HandBrake.Title  ( Title, mkTitle )
+import Video.HandBrake.Title  ( mkTitle )
 
 --------------------------------------------------------------------------------
 
@@ -68,7 +64,7 @@ test7 :: FilePath -> IO [T.Tree String]
 test7 fn = do
   x <- (P.toListM (linesFromFile fn >-> P.filter ((== '+') . head . dropWhile (== ' ')) >-> markDepth) :: IO [(Int,String)])
   let f as = let ((i',s') : as') = as
-                 as'' = takeWhile ( \(x,_) -> x > i' ) as'
+                 as'' = takeWhile ( \(y,_) -> y > i' ) as'
               in (s', map (flip drop as'') (findIndices (\ (i,_) -> i == i'+1) as''))
 --  putStrLn $ T.drawTree $ T.unfoldTree f x
       titles :: [[(Int,String)]]
@@ -77,7 +73,7 @@ test7 fn = do
 
 main :: IO()
 main = handleDie $ do
-  (opts, [arg]) <- getOptions ARGS_ONE ["<dvd>"] options (Options)
+  (_opts, [arg]) <- getOptions ARGS_ONE ["<dvd>"] options (Options)
   putStrLn arg
   ts <- test7 arg
 --  forM_ ts (putStrLn . T.drawTree)

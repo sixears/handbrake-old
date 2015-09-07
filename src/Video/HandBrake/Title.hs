@@ -12,24 +12,17 @@ where
 -- aeson -------------------------------
 
 import Data.Aeson        ( FromJSON( parseJSON )
-                         , Result  ( Error, Success )
                          , ToJSON  ( toJSON )
-                         , Value   ( Number, String )
+                         , Value   ( String )
                          )
 import Data.Aeson.TH     ( deriveJSON, defaultOptions )
-import Data.Aeson.Types  ( Parser )
 
 -- base --------------------------------
 
 import Control.Monad        ( foldM, mzero )
-import Data.Char            ( isDigit, isSpace )
-import Data.List            ( intercalate )
-import Data.Maybe           ( fromMaybe, isJust )
 import Data.Ratio           ( Ratio, (%), numerator, denominator )
 import Data.Word            ( Word8, Word16, Word32 )
-import Debug.Trace          ( traceShow )
 import Text.Printf          ( printf )
-import Text.Read            ( readMaybe )
 
 -- bytestring --------------------------
 
@@ -45,48 +38,37 @@ import Control.Monad.Catch  ( MonadThrow )
 
 -- lens --------------------------------
 
-import Control.Lens    ( Getter, ASetter, Lens'
+import Control.Lens    ( Lens'
                        , (&), (%~), (^.), (?~), (.~)
-                       , _1, makeLenses, set, to, view
+                       , makeLenses, set, view
                        )
 import Data.Tree.Lens  ( branches, root )
 
 -- regex -------------------------------
 
-import Text.Regex.Applicative         ( RE, (=~)
-                                      , anySym, many, psym, string, sym )
-import Text.Regex.Applicative.Common  ( decimal, digit )
-
--- safe --------------------------------
-
-import Safe  ( lastDef )
-
--- scientific --------------------------
-
-import Data.Scientific  ( Scientific, fromFloatDigits )
+import Text.Regex.Applicative         ( anySym, many, psym, string, sym )
+import Text.Regex.Applicative.Common  ( decimal )
 
 -- text --------------------------------
 
 import Data.Text  ( pack, unpack )
 
--- time --------------------------------
-
-import Data.Time.Clock  ( DiffTime, secondsToDiffTime )
-
--- unordered-containers ----------------
-
-import Data.HashMap.Strict  ( singleton )
-
 -- yaml imports ------------------------
 
 import Data.Yaml.Aeson  ( encode )
 
+-- local imports ---------------------------------------------------------------
+
 -- fluffy ------------------------------
 
-import Fluffy.Data.List   ( splitBy2, splitOn, splitOn2 )
+import Fluffy.Data.List   ( splitBy2 )
 import Fluffy.Data.Time   ( timeFormatDuration, timeScanDuration )
 import Fluffy.Sys.Exit    ( dieParse )
 import Fluffy.Text.Regex  ( frac )
+
+-- handbrake ---------------------------
+
+import Video.HandBrake.REMatch  ( REMatch(..), parseJSONString, toJSONString )
 
 --------------------------------------------------------------------------------
 
@@ -96,25 +78,6 @@ dtrim :: String -> String
 dtrim s | '.' `elem` s = reverse $ dropWhile (== '.') $ dropWhile (== '0') $
                                    reverse s
         | otherwise    = s
-
--- REMatch ---------------------------------------------------------------------
-
-class REMatch r where
-  re :: RE Char r
-  parse :: MonadThrow m => String -> m r
-  -- parse = parseREMatch "thing"
-  parseREMatch :: MonadThrow m => String -> String -> m r
-  parseREMatch name s =
-    case s =~ re of
-      Just x  -> return x
-      Nothing -> dieParse $ "failed to parse " ++ name ++ " '" ++ s ++ "'"
-
-parseJSONString :: (REMatch r) => Value -> Parser r
-parseJSONString (String s) = maybe mzero return ((parse . unpack) s)
-parseJSONString _          = mzero
-
-toJSONString :: Show t => t -> Value
-toJSONString = String . pack . show
 
 -- PixelAspect -----------------------------------------------------------------
 
@@ -139,7 +102,6 @@ data Autocrop = Autocrop Word16 Word16 Word16 Word16
 
 instance REMatch Autocrop where
   re = let slash      = string "/"
-           whitespace = many (psym isSpace)
         in Autocrop <$> (decimal <* slash)
                                  <*> (decimal <* slash)
                                  <*> (decimal <* slash)
@@ -212,10 +174,10 @@ newtype Duration = Duration Word32 -- in seconds
 
 instance ToJSON Duration where
   toJSON (Duration d) = String (pack $ timeFormatDuration d)
-  
+
 instance FromJSON Duration where
   parseJSON (String t) = maybe mzero (return . Duration) $ timeScanDuration (unpack t)
-  parseJSON x          = mzero
+  parseJSON _          = mzero
 
 durFromHHMMSS :: (Word8, Word8, Word8) -> Duration
 durFromHHMMSS (hh,mm,ss) = Duration $   fromIntegral hh*60*60
@@ -227,7 +189,6 @@ instance Show Duration where
 
 instance REMatch Duration where
   re = let colon      = string ":"
-           whitespace = many (psym isSpace)
         in durFromHHMMSS <$> ((,,) <$> (decimal <* colon)
                                    <*> (decimal <* colon)
                                    <*> decimal)
@@ -235,10 +196,10 @@ instance REMatch Duration where
 
 -- Audio -----------------------------------------------------------------------
 
-data Audio = Audio { trackid :: !Int
-                   , stuff   :: !String
-                   , freq    :: !Int
-                   , bw      :: !Int
+data Audio = Audio { audioid   :: !Int
+                   , misc      :: !String
+                   , frequency :: !Int
+                   , bandwith  :: !Int
                    }
   deriving Show
 
@@ -310,12 +271,6 @@ data Title = Title { _titleid   :: !Word8
 $( makeLenses ''Title )
 $( deriveJSON defaultOptions ''Title )
 
-mshow :: Show a => Maybe a -> String
-mshow = maybe "" show
-
-duration_mshow :: Getter Title String
-duration_mshow = duration . to mshow
-
 class Showable a where
   showit :: a -> String
 
@@ -332,39 +287,6 @@ instance REMatch Title where
 instance Show Title where
   show = BS.unpack . encode . toJSON
 
-show' t@(Title i d cs sts as ac pa size rate da up) =
-    let kvs = [ ( "title"       , show i)
-              , ( "duration"    , t ^. duration_mshow) -- maybe "" show d)
-              , ( "chapters"    , (show $ length cs))
-              , ( "chapters"    , showit $ (zip [1..] (fmap show cs) :: [(Int, String)]))
-              , ( "autocrop"    , maybe "" show ac)
-              , ( "pixel aspect", maybe "" show pa)
-              , ( "subtitles"   , showit $ (zip [1..] (fmap show sts) :: [(Int, String)]))
-              ]
-        keylen = maximum $ fmap (length . view _1) kvs
-        keyf k = k ++ replicate (keylen - length k) ' '
-        chaps = zip [1..] cs :: [(Int, Chapter)]
-     in concat ( fmap (\ (k, v) -> concat [ keyf k
-                                          , ":"
-                                          , if '\n' `elem` v then "\n" else " "
-                                          , v
-                                          , if '\n' == lastDef ' ' v then "" else "\n"]
-               ) kvs
-                )
---     in printf "Title %d %d@%s [%s]%s {%s%s%s}%s:\n%s%s%s"
---               i (length cs) (maybe "" formatDuration d)
---               (intercalate "," $ fmap formatDuration cs)
---               (case ac of
---                 Just (t,b,l,r) -> " " ++ intercalate "/" (map show [t,b,l,r])
---                 Nothing        -> "")
---               (show pa)
---               (maybe "" ((' ' :) . show) size)
---               (maybe "" ((' ' :) . show) da)
---               (maybe "" show rate)
---               (unlines $ fmap show as)
---               (unlines $ fmap show sts)
---               (unlines (fmap (("t: " ++) . drawTree) up))
-
 newTitle :: Word8 -> Title
 newTitle ti = Title ti Nothing [] [] [] Nothing Nothing Nothing Nothing Nothing []
 
@@ -378,27 +300,23 @@ treeDepth t = case t ^. branches of
 
 -- | check the depth of a tree is as expected
 checkDepths :: MonadThrow m => Int -> Int -> Tree String -> m ()
-checkDepths min max t =
+checkDepths low high t =
   let d = treeDepth t
-   in if d >= min && d <= max
+   in if d >= low && d <= high
       then return ()
       else dieParse $
              printf "failed to parse tree; got depth %d, expected %d-%d\n%s"
-                    d min max (drawTree t)
+                    d low high (drawTree t)
 
+checkDepth :: MonadThrow m => Int -> Tree String -> m ()
 checkDepth n = checkDepths n n
 
 ----------
 
-parseOne :: MonadThrow m => (String -> m x) -> Tree String -> m x
-parseOne parse t = do
-  checkDepth 1 t
-  parse (t ^. root)
-
 parseMany :: (MonadThrow m, REMatch x) =>
              Int -> Int -> Tree String -> m [x]
-parseMany min max t = do
-  checkDepths min max t
+parseMany low high t = do
+  checkDepths low high t
   mapM parse (map (view root) $ t ^. branches)
 
 parseChapters :: MonadThrow m => Tree String -> m [Chapter]
@@ -418,16 +336,11 @@ parseAudios = parseMany 1 2
 
 ------------------------------------------------------------
 
-parseDetails :: MonadThrow m => String -> m Details
-parseDetails = parse
-
-------------------------------------------------------------
-
 type Details = (FrameSize, PixelAspect, DisplayAspect, FrameRate)
 
 instance REMatch Details where
   re = (,,,) <$> re
-             <*> (string ", pixel aspect: " *> re)
+             <*> (string ", pixel aspect: "   *> re)
              <*> (string ", display aspect: " *> re)
              <*> (string ", " *> re)
   parse = parseREMatch "details"
@@ -473,8 +386,8 @@ addDetail :: MonadThrow m => Title -> Tree String -> m Title
 addDetail t branch =
   let trim :: String -> String
       trim = dropWhile (== ' ')
-      parse_tree parser lens set =
-        parser branch >>= \x -> return $ t & lens `set` x
+      parse_tree parser lens setter =
+        parser branch >>= \x -> return $ t & lens `setter` x
       parse_root :: (MonadThrow m, REMatch r) =>
                     String -> Lens' Title (Maybe r) -> m Title
       parse_root x lens =
@@ -492,11 +405,3 @@ mkTitle :: MonadThrow m => Tree String -> m Title
 mkTitle t = do
   ti <- parse $ t ^. root
   foldM addDetail ti (t ^. branches)
-
-
--- I have a Lens' a b == (a -> f a) -> b -> f b
--- I want a Lens' a String == (a -> f a) -> String -> f String
--- lensLens :: Lens' Temp a -> (a -> b) -> (b -> a) -> Lens' Temp b
-lensLens :: (a -> b) -> (b -> a) -> Lens' x a -> Lens' x b
-lensLens aToB bToA l functor p =
-  ((p &) . set l . bToA) <$> functor (aToB (p ^. l))
