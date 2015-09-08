@@ -50,8 +50,9 @@ library
   ghc-options:      -O2 -W -Wall -fhelpful-errors
 
   -- Modules exported by the library.
-  exposed-modules:     Video.HandBrake.PixelAspect,
-                       -- needs to be exported for tests
+  exposed-modules:     Video.HandBrake.Autocrop,
+                       Video.HandBrake.DisplayAspect,
+                       Video.HandBrake.PixelAspect,
                        Video.HandBrake.REMatch,
                        Video.HandBrake.Title
 

@@ -67,9 +67,11 @@ import Fluffy.Text.Regex  ( frac )
 
 -- handbrake ---------------------------
 
-import Video.HandBrake.PixelAspect  ( PixelAspect )
-import Video.HandBrake.REMatch      ( REMatch(..)
-                                    , parseJSONString, toJSONString )
+import Video.HandBrake.Autocrop       ( Autocrop )
+import Video.HandBrake.DisplayAspect  ( DisplayAspect )
+import Video.HandBrake.PixelAspect    ( PixelAspect )
+import Video.HandBrake.REMatch        ( REMatch(..)
+                                      , parseJSONString, toJSONString )
 
 --------------------------------------------------------------------------------
 
@@ -79,44 +81,6 @@ dtrim :: String -> String
 dtrim s | '.' `elem` s = reverse $ dropWhile (== '.') $ dropWhile (== '0') $
                                    reverse s
         | otherwise    = s
-
--- Autocrop --------------------------------------------------------------------
-
-data Autocrop = Autocrop Word16 Word16 Word16 Word16
-
-instance REMatch Autocrop where
-  re = let slash      = string "/"
-        in Autocrop <$> (decimal <* slash)
-                                 <*> (decimal <* slash)
-                                 <*> (decimal <* slash)
-                                 <*> decimal
-  parse = parseREMatch "autocrop"
-
-instance Show Autocrop where
-  show (Autocrop t b l r) = printf "%d/%d/%d/%d" t b l r
-
-instance FromJSON Autocrop where
-  parseJSON = parseJSONString
-
-instance ToJSON Autocrop where
-  toJSON = toJSONString
-
--- DisplayAspect ---------------------------------------------------------------
-
-newtype DisplayAspect = DisplayAspect Float
-
-instance Show DisplayAspect where
-  show (DisplayAspect p) = printf "%3.2f" p
-
-instance REMatch DisplayAspect where
-  re    = DisplayAspect <$> frac
-  parse = parseREMatch "displayaspect"
-
-instance FromJSON DisplayAspect where
-  parseJSON = parseJSONString
-
-instance ToJSON DisplayAspect where
-  toJSON = toJSONString
 
 -- FrameRate -------------------------------------------------------------------
 
