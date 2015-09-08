@@ -53,6 +53,7 @@ library
   exposed-modules:     Video.HandBrake.Autocrop,
                        Video.HandBrake.DisplayAspect,
                        Video.HandBrake.FrameRate,
+                       Video.HandBrake.FrameSize,
                        Video.HandBrake.PixelAspect,
                        Video.HandBrake.REMatch,
                        Video.HandBrake.Title

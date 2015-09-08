@@ -3,6 +3,7 @@
 import Video.HandBrake.Autocrop       ( Autocrop( Autocrop ) )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect( DisplayAspect ) )
 import Video.HandBrake.FrameRate      ( FrameRate( FrameRate ) )
+import Video.HandBrake.FrameSize      ( FrameSize( FrameSize ) )
 import Video.HandBrake.PixelAspect    ( PixelAspect( PixelAspect ) )
 import Video.HandBrake.REMatch        ( parse )
 
@@ -28,7 +29,10 @@ main :: IO ()
 main = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect, framerate ]
+tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect
+                          , framerate, framesize ]
+
+----------------------------------------
 
 pixel_aspect :: TestTree
 pixel_aspect =
@@ -43,6 +47,8 @@ pixel_aspect =
                 decode "[ \"6/2\" ]" @?= Just [ PixelAspect (6%2) ]
             ]
 
+----------------------------------------
+
 autocrop :: TestTree
 autocrop =
   testGroup "Autocrop hunit tests"
@@ -54,6 +60,8 @@ autocrop =
             , testCase                                                "decode" $
                 decode "[ \"1/3/5/7\" ]" @?= Just [ Autocrop 1 3 5 7 ]
             ]
+
+----------------------------------------
 
 display_aspect :: TestTree
 display_aspect =
@@ -68,6 +76,8 @@ display_aspect =
                 decode "[ \"1.7\" ]" @?= Just [ DisplayAspect 1.7 ]
             ]
 
+----------------------------------------
+
 framerate :: TestTree
 framerate =
   testGroup "FrameRate hunit tests"
@@ -80,3 +90,19 @@ framerate =
             , testCase                                                "decode" $
                 decode "[ \"7.1fps\" ]" @?= Just [ FrameRate 7.1 ]
             ]
+
+----------------------------------------
+
+framesize :: TestTree
+framesize =
+  testGroup "FrameSize hunit tests"
+            [
+              testCase                                                 "parse" $
+                parse "16x9" @?= Just (FrameSize 16 9)
+            , testCase                                                "encode" $
+                encode (FrameSize 4 3) @?= "\"4x3\""
+            , testCase                                                "decode" $
+                decode "[ \"9x16\" ]" @?= Just [ FrameSize 9 16 ]
+            ]
+
+----------------------------------------

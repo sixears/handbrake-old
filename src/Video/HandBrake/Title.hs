@@ -69,28 +69,11 @@ import Fluffy.Sys.Exit    ( dieParse )
 import Video.HandBrake.Autocrop       ( Autocrop )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect )
 import Video.HandBrake.FrameRate      ( FrameRate )
+import Video.HandBrake.FrameSize      ( FrameSize )
 import Video.HandBrake.PixelAspect    ( PixelAspect )
-import Video.HandBrake.REMatch        ( REMatch(..)
-                                      , parseJSONString, toJSONString )
+import Video.HandBrake.REMatch        ( REMatch(..) )
 
 --------------------------------------------------------------------------------
-
--- FrameSize -------------------------------------------------------------------
-
-data FrameSize = FrameSize Word16 Word16
-
-instance Show FrameSize where
-  show (FrameSize w h) = printf "%dx%d" w h
-
-instance REMatch FrameSize where
-  re    = FrameSize <$> decimal <*> (string "x" *> decimal)
-  parse = parseREMatch "framesize"
-
-instance FromJSON FrameSize where
-  parseJSON = parseJSONString
-
-instance ToJSON FrameSize where
-  toJSON = toJSONString
 
 -- Duration --------------------------------------------------------------------
 
