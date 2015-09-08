@@ -1,10 +1,14 @@
-module Video.HandBrake.DisplayAspect
-  ( DisplayAspect( DisplayAspect ) )
+module Video.HandBrake.FrameRate
+  ( FrameRate( FrameRate ) )
 where
 
 -- base --------------------------------
 
-import Text.Printf          ( printf )
+import Text.Printf  ( printf )
+
+-- regex -------------------------------
+
+import Text.Regex.Applicative  ( many, string, sym )
 
 -- local imports ---------------------------------------------------------------
 
@@ -20,24 +24,23 @@ import Data.Aeson        ( FromJSON( parseJSON )
 
 import Video.HandBrake.REMatch  ( REMatch(..), toJSONString, parseJSONString )
 
--- DisplayAspect ---------------------------------------------------------------
+-- FrameRate -------------------------------------------------------------------
 
-newtype DisplayAspect = DisplayAspect Float
+newtype FrameRate = FrameRate Float -- in fps
   deriving Eq
 
-instance Show DisplayAspect where
-  show (DisplayAspect p) = dtrim $ printf "%3f" p
+instance Show FrameRate where
+  show (FrameRate f) = dtrim $ printf "%3.2ffps" f
 
-instance REMatch DisplayAspect where
-  re    = DisplayAspect <$> frac
-  parse = parseREMatch "displayaspect"
+instance REMatch FrameRate where
+  re    = FrameRate <$> frac <* many (sym ' ') <* string "fps"
+  parse = parseREMatch "framerate"
 
-instance FromJSON DisplayAspect where
+instance FromJSON FrameRate where
   parseJSON = parseJSONString
 
-instance ToJSON DisplayAspect where
+instance ToJSON FrameRate where
   toJSON = toJSONString
-
 
 --------------------------------------------------------------------------------
 
@@ -47,3 +50,4 @@ dtrim :: String -> String
 dtrim s | '.' `elem` s = reverse $ dropWhile (== '.') $ dropWhile (== '0') $
                                    reverse s
         | otherwise    = s
+

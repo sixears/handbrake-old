@@ -45,7 +45,7 @@ import Data.Tree.Lens  ( branches, root )
 
 -- regex -------------------------------
 
-import Text.Regex.Applicative         ( anySym, many, psym, string, sym )
+import Text.Regex.Applicative         ( anySym, many, psym, string )
 import Text.Regex.Applicative.Common  ( decimal )
 
 -- text --------------------------------
@@ -63,41 +63,17 @@ import Data.Yaml.Aeson  ( encode )
 import Fluffy.Data.List   ( splitBy2 )
 import Fluffy.Data.Time   ( timeFormatDuration, timeScanDuration )
 import Fluffy.Sys.Exit    ( dieParse )
-import Fluffy.Text.Regex  ( frac )
 
 -- handbrake ---------------------------
 
 import Video.HandBrake.Autocrop       ( Autocrop )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect )
+import Video.HandBrake.FrameRate      ( FrameRate )
 import Video.HandBrake.PixelAspect    ( PixelAspect )
 import Video.HandBrake.REMatch        ( REMatch(..)
                                       , parseJSONString, toJSONString )
 
 --------------------------------------------------------------------------------
-
--- | trim the non-essential tail off a decimal (trailing 0s after a ., and maybe
---   the . itself
-dtrim :: String -> String
-dtrim s | '.' `elem` s = reverse $ dropWhile (== '.') $ dropWhile (== '0') $
-                                   reverse s
-        | otherwise    = s
-
--- FrameRate -------------------------------------------------------------------
-
-newtype FrameRate = FrameRate Float -- in fps
-
-instance Show FrameRate where
-  show (FrameRate f) = dtrim $ printf "%3.2ffps" f
-
-instance REMatch FrameRate where
-  re    = FrameRate <$> frac <* many (sym ' ') <* string "fps"
-  parse = parseREMatch "framerate"
-
-instance FromJSON FrameRate where
-  parseJSON = parseJSONString
-
-instance ToJSON FrameRate where
-  toJSON = toJSONString
 
 -- FrameSize -------------------------------------------------------------------
 
