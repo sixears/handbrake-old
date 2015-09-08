@@ -20,7 +20,6 @@ import Data.Aeson.TH     ( deriveJSON, defaultOptions )
 -- base --------------------------------
 
 import Control.Monad        ( foldM, mzero )
-import Data.Ratio           ( Ratio, (%), numerator, denominator )
 import Data.Word            ( Word8, Word16, Word32 )
 import Text.Printf          ( printf )
 
@@ -68,7 +67,9 @@ import Fluffy.Text.Regex  ( frac )
 
 -- handbrake ---------------------------
 
-import Video.HandBrake.REMatch  ( REMatch(..), parseJSONString, toJSONString )
+import Video.HandBrake.PixelAspect  ( PixelAspect )
+import Video.HandBrake.REMatch      ( REMatch(..)
+                                    , parseJSONString, toJSONString )
 
 --------------------------------------------------------------------------------
 
@@ -78,23 +79,6 @@ dtrim :: String -> String
 dtrim s | '.' `elem` s = reverse $ dropWhile (== '.') $ dropWhile (== '0') $
                                    reverse s
         | otherwise    = s
-
--- PixelAspect -----------------------------------------------------------------
-
-newtype PixelAspect = PixelAspect (Ratio Word8)
-
-instance REMatch PixelAspect where
-  re    = PixelAspect <$> ((%) <$> decimal <*> (string "/" *> decimal))
-  parse = parseREMatch "pixelaspect"
-
-instance ToJSON PixelAspect where
-  toJSON = toJSONString
-
-instance FromJSON PixelAspect where
-  parseJSON = parseJSONString
-
-instance Show PixelAspect where
-  show (PixelAspect p) = printf "%d/%d" (numerator p) (denominator p)
 
 -- Autocrop --------------------------------------------------------------------
 

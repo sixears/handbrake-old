@@ -50,9 +50,10 @@ library
   ghc-options:      -O2 -W -Wall -fhelpful-errors
 
   -- Modules exported by the library.
-  exposed-modules:     Video.HandBrake.Title,
+  exposed-modules:     Video.HandBrake.PixelAspect,
                        -- needs to be exported for tests
-                       Video.HandBrake.REMatch
+                       Video.HandBrake.REMatch,
+                       Video.HandBrake.Title
 
   -- Modules included in this library but not exported.
   other-modules:       
@@ -104,6 +105,23 @@ test-suite rematch
   ghc-options:         -O2 -W -Wall -fhelpful-errors
   type:                exitcode-stdio-1.0
   main-is:             REMatch.hs
+  hs-source-dirs:      t
+  build-depends:       aeson,
+                       base,
+                       regex-applicative,
+                       tasty              == 0.10.*,
+                       tasty-hunit        == 0.9.*,
+                       text,
+
+                       handbrake
+  default-language:    Haskell2010
+
+----------------------------------------
+
+test-suite parses
+  ghc-options:         -O2 -W -Wall -fhelpful-errors
+  type:                exitcode-stdio-1.0
+  main-is:             Parses.hs
   hs-source-dirs:      t
   build-depends:       aeson,
                        base,
