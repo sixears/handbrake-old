@@ -52,6 +52,7 @@ library
   -- Modules exported by the library.
   exposed-modules:     Video.HandBrake.Autocrop,
                        Video.HandBrake.DisplayAspect,
+                       Video.HandBrake.Duration,
                        Video.HandBrake.FrameRate,
                        Video.HandBrake.FrameSize,
                        Video.HandBrake.PixelAspect,

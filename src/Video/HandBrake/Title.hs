@@ -11,16 +11,13 @@ where
 
 -- aeson -------------------------------
 
-import Data.Aeson        ( FromJSON( parseJSON )
-                         , ToJSON  ( toJSON )
-                         , Value   ( String )
-                         )
+import Data.Aeson        ( ToJSON  ( toJSON ) )
 import Data.Aeson.TH     ( deriveJSON, defaultOptions )
 
 -- base --------------------------------
 
-import Control.Monad        ( foldM, mzero )
-import Data.Word            ( Word8, Word16, Word32 )
+import Control.Monad        ( foldM )
+import Data.Word            ( Word8, Word16 )
 import Text.Printf          ( printf )
 
 -- bytestring --------------------------
@@ -48,10 +45,6 @@ import Data.Tree.Lens  ( branches, root )
 import Text.Regex.Applicative         ( anySym, many, psym, string )
 import Text.Regex.Applicative.Common  ( decimal )
 
--- text --------------------------------
-
-import Data.Text  ( pack, unpack )
-
 -- yaml imports ------------------------
 
 import Data.Yaml.Aeson  ( encode )
@@ -61,45 +54,19 @@ import Data.Yaml.Aeson  ( encode )
 -- fluffy ------------------------------
 
 import Fluffy.Data.List   ( splitBy2 )
-import Fluffy.Data.Time   ( timeFormatDuration, timeScanDuration )
 import Fluffy.Sys.Exit    ( dieParse )
 
 -- handbrake ---------------------------
 
 import Video.HandBrake.Autocrop       ( Autocrop )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect )
+import Video.HandBrake.Duration       ( Duration )
 import Video.HandBrake.FrameRate      ( FrameRate )
 import Video.HandBrake.FrameSize      ( FrameSize )
 import Video.HandBrake.PixelAspect    ( PixelAspect )
 import Video.HandBrake.REMatch        ( REMatch(..) )
 
 --------------------------------------------------------------------------------
-
--- Duration --------------------------------------------------------------------
-
-newtype Duration = Duration Word32 -- in seconds
-
-instance ToJSON Duration where
-  toJSON (Duration d) = String (pack $ timeFormatDuration d)
-
-instance FromJSON Duration where
-  parseJSON (String t) = maybe mzero (return . Duration) $ timeScanDuration (unpack t)
-  parseJSON _          = mzero
-
-durFromHHMMSS :: (Word8, Word8, Word8) -> Duration
-durFromHHMMSS (hh,mm,ss) = Duration $   fromIntegral hh*60*60
-                                      + fromIntegral mm * 60
-                                      + fromIntegral ss
-
-instance Show Duration where
-  show (Duration d) = timeFormatDuration d
-
-instance REMatch Duration where
-  re = let colon      = string ":"
-        in durFromHHMMSS <$> ((,,) <$> (decimal <* colon)
-                                   <*> (decimal <* colon)
-                                   <*> decimal)
-  parse = parseREMatch "duration"
 
 -- Audio -----------------------------------------------------------------------
 

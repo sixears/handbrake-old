@@ -2,6 +2,7 @@
 
 import Video.HandBrake.Autocrop       ( Autocrop( Autocrop ) )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect( DisplayAspect ) )
+import Video.HandBrake.Duration       ( Duration( Duration ) )
 import Video.HandBrake.FrameRate      ( FrameRate( FrameRate ) )
 import Video.HandBrake.FrameSize      ( FrameSize( FrameSize ) )
 import Video.HandBrake.PixelAspect    ( PixelAspect( PixelAspect ) )
@@ -30,7 +31,7 @@ main = defaultMain tests
 
 tests :: TestTree
 tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect
-                          , framerate, framesize ]
+                          , framerate, framesize, duration ]
 
 ----------------------------------------
 
@@ -103,6 +104,20 @@ framesize =
                 encode (FrameSize 4 3) @?= "\"4x3\""
             , testCase                                                "decode" $
                 decode "[ \"9x16\" ]" @?= Just [ FrameSize 9 16 ]
+            ]
+
+----------------------------------------
+
+duration :: TestTree
+duration =
+  testGroup "Duration hunit tests"
+            [
+              testCase                                                 "parse" $
+                parse "24:11:1" @?= Just (Duration 87061)
+            , testCase                                                "encode" $
+                encode (Duration 11111) @?= "\"3h05m11s\""
+            , testCase                                                "decode" $
+                decode "[ \"3h3m\" ]" @?= Just [ Duration 10980 ]
             ]
 
 ----------------------------------------
