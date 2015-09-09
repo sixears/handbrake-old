@@ -42,7 +42,7 @@ import Data.Tree.Lens  ( branches, root )
 
 -- regex -------------------------------
 
-import Text.Regex.Applicative         ( anySym, many, psym, string )
+import Text.Regex.Applicative         ( anySym, many, string )
 import Text.Regex.Applicative.Common  ( decimal )
 
 -- yaml imports ------------------------
@@ -58,6 +58,7 @@ import Fluffy.Sys.Exit    ( dieParse )
 
 -- handbrake ---------------------------
 
+import Video.HandBrake.Audio          ( Audio )
 import Video.HandBrake.Autocrop       ( Autocrop )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect )
 import Video.HandBrake.Duration       ( Duration )
@@ -68,24 +69,6 @@ import Video.HandBrake.REMatch        ( REMatch(..) )
 
 --------------------------------------------------------------------------------
 
--- Audio -----------------------------------------------------------------------
-
-data Audio = Audio { audioid   :: !Int
-                   , misc      :: !String
-                   , frequency :: !Int
-                   , bandwith  :: !Int
-                   }
-  deriving Show
-
-$( deriveJSON defaultOptions ''Audio )
-
-instance REMatch Audio where
-  re    = Audio <$> trackid <*> stuff <*> freq <*> bw
-          where trackid = decimal <* string ", "
-                stuff   = many (psym (/= ',')) <* string ", "
-                freq    = decimal <* string "Hz, "
-                bw      = decimal <* string "bps"
-  parse = parseREMatch "audio"
 
 -- Subtitle --------------------------------------------------------------------
 

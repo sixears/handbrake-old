@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+import Video.HandBrake.Audio          ( Audio( Audio ) )
 import Video.HandBrake.Autocrop       ( Autocrop( Autocrop ) )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect( DisplayAspect ) )
 import Video.HandBrake.Duration       ( Duration( Duration ) )
@@ -31,7 +32,7 @@ main = defaultMain tests
 
 tests :: TestTree
 tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect
-                          , framerate, framesize, duration ]
+                          , framerate, framesize, duration, audio ]
 
 ----------------------------------------
 
@@ -119,5 +120,25 @@ duration =
             , testCase                                                "decode" $
                 decode "[ \"3h3m\" ]" @?= Just [ Duration 10980 ]
             ]
+
+----------------------------------------
+
+
+audio :: TestTree
+audio =
+  let au_str = "1, Unknown (AC3) (2.0 ch) (iso639-2: und), 48000Hz, 192000bps"
+   in testGroup "Audio hunit tests"
+                [
+                  testCase                                             "parse" $
+                    parse au_str
+                      @?= Just (Audio 1 "Unknown (AC3) (2.0 ch) (iso639-2: und)"
+                                      48000 192000)
+                , testCase                                            "encode" $
+                    encode (Audio 2 "blomquist" 23 77)
+                      @?= "\"2: 23Hz 77bps # blomquist\""
+                , testCase                                            "decode" $
+                    decode "[ \"3, quistbop, 45Hz, 88bps\" ]"
+                      @?= Just [ Audio 3 "quistbop" 45 88 ]
+                ]
 
 ----------------------------------------

@@ -2,6 +2,10 @@ module Video.HandBrake.FrameSize
   ( FrameSize( FrameSize ) )
 where
 
+-- aeson -------------------------------
+
+import Data.Aeson  ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
+
 -- base --------------------------------
 
 import Data.Word    ( Word16 )
@@ -15,10 +19,6 @@ import Text.Regex.Applicative.Common  ( decimal )
 -- local imports ---------------------------------------------------------------
 
 -- handbrake ---------------------------
-
-import Data.Aeson        ( FromJSON( parseJSON )
-                         , ToJSON  ( toJSON )
-                         )
 
 import Video.HandBrake.REMatch  ( REMatch(..), toJSONString, parseJSONString )
 

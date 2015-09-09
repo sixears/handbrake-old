@@ -50,7 +50,8 @@ library
   ghc-options:      -O2 -W -Wall -fhelpful-errors
 
   -- Modules exported by the library.
-  exposed-modules:     Video.HandBrake.Autocrop,
+  exposed-modules:     Video.HandBrake.Audio,
+                       Video.HandBrake.Autocrop,
                        Video.HandBrake.DisplayAspect,
                        Video.HandBrake.Duration,
                        Video.HandBrake.FrameRate,
