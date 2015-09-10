@@ -8,6 +8,7 @@ import Video.HandBrake.FrameRate      ( FrameRate( FrameRate ) )
 import Video.HandBrake.FrameSize      ( FrameSize( FrameSize ) )
 import Video.HandBrake.PixelAspect    ( PixelAspect( PixelAspect ) )
 import Video.HandBrake.REMatch        ( parse )
+import Video.HandBrake.Subtitle       ( Subtitle( Subtitle ) )
 
 -- aeson -------------------------------
 
@@ -32,7 +33,7 @@ main = defaultMain tests
 
 tests :: TestTree
 tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect
-                          , framerate, framesize, duration, audio ]
+                          , framerate, framesize, duration, audio, subtitle ]
 
 ----------------------------------------
 
@@ -135,10 +136,25 @@ audio =
                                       48000 192000)
                 , testCase                                            "encode" $
                     encode (Audio 2 "blomquist" 23 77)
-                      @?= "\"2: 23Hz 77bps # blomquist\""
+                      @?= "\"Audio 2: 23Hz 77bps # blomquist\""
                 , testCase                                            "decode" $
                     decode "[ \"3, quistbop, 45Hz, 88bps\" ]"
                       @?= Just [ Audio 3 "quistbop" 45 88 ]
                 ]
+
+----------------------------------------
+
+subtitle :: TestTree
+subtitle =
+  testGroup "Subtitle hunit tests"
+            [
+              testCase                                                 "parse" $
+                parse "2, some stuff" @?= Just (Subtitle 2 "some stuff")
+            , testCase                                                "encode" $
+                encode (Subtitle 3 "more stuff") @?= "\"Subtitle 3 # more stuff\""
+            , testCase                                                "decode" $
+                decode "[ \"3, also nonsense\" ]"
+                  @?= Just [ Subtitle 3 "also nonsense" ]
+            ]
 
 ----------------------------------------

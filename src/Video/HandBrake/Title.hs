@@ -42,7 +42,7 @@ import Data.Tree.Lens  ( branches, root )
 
 -- regex -------------------------------
 
-import Text.Regex.Applicative         ( anySym, many, string )
+import Text.Regex.Applicative         ( string )
 import Text.Regex.Applicative.Common  ( decimal )
 
 -- yaml imports ------------------------
@@ -66,21 +66,9 @@ import Video.HandBrake.FrameRate      ( FrameRate )
 import Video.HandBrake.FrameSize      ( FrameSize )
 import Video.HandBrake.PixelAspect    ( PixelAspect )
 import Video.HandBrake.REMatch        ( REMatch(..) )
+import Video.HandBrake.Subtitle       ( Subtitle )
 
 --------------------------------------------------------------------------------
-
-
--- Subtitle --------------------------------------------------------------------
-
-data Subtitle = Subtitle { subtid :: Int
-                         , str    :: String }
-  deriving Show
-
-$( deriveJSON defaultOptions ''Subtitle )
-
-instance REMatch Subtitle where
-  re    = Subtitle <$> (decimal <* string ", ") <*> many anySym
-  parse = parseREMatch "subtitle"
 
 -- Chapter ---------------------------------------------------------------------
 

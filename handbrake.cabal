@@ -58,6 +58,7 @@ library
                        Video.HandBrake.FrameSize,
                        Video.HandBrake.PixelAspect,
                        Video.HandBrake.REMatch,
+                       Video.HandBrake.Subtitle,
                        Video.HandBrake.Title
 
   -- Modules included in this library but not exported.
@@ -75,6 +76,7 @@ library
                        bytestring           == 0.10.*,
                        containers           == 0.5.*,
                        exceptions           == 0.8.*,
+                       formatting           == 6.2.*,
                        lens                 == 4.9.*,
                        regex-applicative    == 0.3.*,
                        text                 == 1.2.*,
