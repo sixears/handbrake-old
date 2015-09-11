@@ -10,6 +10,10 @@ where
 import Data.Aeson        ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
 import Data.Aeson.Types  ( Value( String ) )
 
+-- base --------------------------------
+
+import Control.Applicative  ( (<|>) )
+
 -- formatting --------------------------
 
 import Formatting  ( (%), sformat, int, string )
@@ -17,7 +21,7 @@ import Formatting  ( (%), sformat, int, string )
 -- regex -------------------------------
 
 import qualified Text.Regex.Applicative as RE
-import Text.Regex.Applicative         ( many, psym )
+import Text.Regex.Applicative         ( anySym, many, psym )
 import Text.Regex.Applicative.Common  ( decimal )
 
 -- text --------------------------------
@@ -39,17 +43,32 @@ data Audio = Audio { audioid   :: !Int
                    }
   deriving Eq
 
+
 instance REMatch Audio where
-  re    = Audio <$> trackid <*> stuff <*> freq <*> bw
-          where trackid = decimal <* RE.string ", "
+  re    =     Audio <$> (trackid <* RE.string ", ")
+                    <*> stuff
+                    <*> (freq <* RE.string ", ")
+                    <*> bw
+          <|>
+              audio <$> (RE.string "Audio " *> trackid)
+                    <*> (RE.string ": " *> freq <* space)
+                    <*> (bw <* RE.string " # ")
+                    <*> anyStr
+          where audio a f b m = Audio a m f b
+                space   = RE.string " "
+                anyStr  = many anySym
+                trackid = decimal
                 stuff   = many (psym (/= ',')) <* RE.string ", "
-                freq    = decimal <* RE.string "Hz, "
+                freq    = decimal <* RE.string "Hz"
                 bw      = decimal <* RE.string "bps"
+
   parse = parseREMatch "audio"
 
 showt :: Audio -> Text
 showt a = sformat ("Audio " % int % ": " % int % "Hz " % int %  "bps # " % string)
                   (audioid a) (frequency a) (bandwidth a) (misc a)
+
+-- use Formatting.Internal.formatToString rather than unpack??
 
 instance Show Audio where
   show = unpack . showt

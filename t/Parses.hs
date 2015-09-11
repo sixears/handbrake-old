@@ -138,7 +138,7 @@ audio =
                     encode (Audio 2 "blomquist" 23 77)
                       @?= "\"Audio 2: 23Hz 77bps # blomquist\""
                 , testCase                                            "decode" $
-                    decode "[ \"3, quistbop, 45Hz, 88bps\" ]"
+                    decode "[ \"Audio 3: 45Hz 88bps # quistbop\" ]"
                       @?= Just [ Audio 3 "quistbop" 45 88 ]
                 ]
 
