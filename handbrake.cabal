@@ -52,12 +52,12 @@ library
   -- Modules exported by the library.
   exposed-modules:     Video.HandBrake.Audio,
                        Video.HandBrake.Autocrop,
+                       Video.HandBrake.Chapter,
                        Video.HandBrake.DisplayAspect,
                        Video.HandBrake.Duration,
                        Video.HandBrake.FrameRate,
                        Video.HandBrake.FrameSize,
                        Video.HandBrake.PixelAspect,
-                       Video.HandBrake.REMatch,
                        Video.HandBrake.Subtitle,
                        Video.HandBrake.Title
 
@@ -80,11 +80,12 @@ library
                        lens                 == 4.9.*,
                        regex-applicative    == 0.3.*,
                        text                 == 1.2.*,
+ -- needed temporarily for Duration Formatting
+                       text-format          == 0.3.*,
                        time                 == 1.5.*,
---                       unordered-containers == 0.2.*,
                        yaml                 == 0.8.*,
 
-                       fluffy               == 0.1.*
+                       fluffy               >= 0.2.1.0
 
   -- Directories containing source files.
   hs-source-dirs:      src
@@ -102,26 +103,9 @@ executable hbh
                     pipes        == 4.1.*,
                     transformers == 0.4.*,
 
-                    fluffy == 0.1.*,
+                    fluffy,
                     handbrake
   default-language: Haskell2010
-
-----------------------------------------
-
-test-suite rematch
-  ghc-options:         -O2 -W -Wall -fhelpful-errors
-  type:                exitcode-stdio-1.0
-  main-is:             REMatch.hs
-  hs-source-dirs:      t
-  build-depends:       aeson,
-                       base,
-                       regex-applicative,
-                       tasty              == 0.10.*,
-                       tasty-hunit        == 0.9.*,
-                       text,
-
-                       handbrake
-  default-language:    Haskell2010
 
 ----------------------------------------
 
@@ -137,5 +121,5 @@ test-suite parses
                        tasty-hunit        == 0.9.*,
                        text,
 
-                       handbrake
+                       fluffy, handbrake
   default-language:    Haskell2010

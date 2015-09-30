@@ -21,9 +21,9 @@ import Text.Regex.Applicative.Common  ( decimal )
 
 -- local imports ---------------------------------------------------------------
 
--- handbrake ---------------------------
+-- fluffy ------------------------------
 
-import Video.HandBrake.REMatch  ( REMatch(..), parseJSONString )
+import Fluffy.Text.Regex  ( REMatch(..), parseJSONString )
 
 -- Subtitle --------------------------------------------------------------------
 

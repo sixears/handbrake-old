@@ -18,9 +18,9 @@ import Text.Regex.Applicative.Common  ( decimal )
 
 -- local imports ---------------------------------------------------------------
 
--- handbrake ---------------------------
+-- fluffy ------------------------------
 
-import Video.HandBrake.REMatch  ( REMatch(..), toJSONString, parseJSONString )
+import Fluffy.Text.Regex  ( REMatch(..), toJSONString, parseJSONString )
 
 -- FrameSize -------------------------------------------------------------------
 

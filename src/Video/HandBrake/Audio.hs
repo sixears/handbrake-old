@@ -30,9 +30,9 @@ import Data.Text  ( Text, unpack )
 
 -- local imports -------------------------------------------
 
--- handbrake ---------------------------
+-- fluffy ------------------------------
 
-import Video.HandBrake.REMatch  ( REMatch(..), parseJSONString )
+import Fluffy.Text.Regex  ( REMatch(..), parseJSONString )
 
 -- Audio -----------------------------------------------------------------------
 
@@ -68,7 +68,6 @@ showt :: Audio -> Text
 showt a = sformat ("Audio " % int % ": " % int % "Hz " % int %  "bps # " % string)
                   (audioid a) (frequency a) (bandwidth a) (misc a)
 
--- use Formatting.Internal.formatToString rather than unpack??
 
 instance Show Audio where
   show = unpack . showt

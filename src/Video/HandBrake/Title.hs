@@ -17,7 +17,7 @@ import Data.Aeson.TH     ( deriveJSON, defaultOptions )
 -- base --------------------------------
 
 import Control.Monad        ( foldM )
-import Data.Word            ( Word8, Word16 )
+import Data.Word            ( Word8 )
 import Text.Printf          ( printf )
 
 -- bytestring --------------------------
@@ -55,48 +55,21 @@ import Data.Yaml.Aeson  ( encode )
 
 import Fluffy.Data.List   ( splitBy2 )
 import Fluffy.Sys.Exit    ( dieParse )
+import Fluffy.Text.Regex  ( REMatch(..) )
 
 -- handbrake ---------------------------
 
 import Video.HandBrake.Audio          ( Audio )
 import Video.HandBrake.Autocrop       ( Autocrop )
+import Video.HandBrake.Chapter        ( Chapter )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect )
 import Video.HandBrake.Duration       ( Duration )
 import Video.HandBrake.FrameRate      ( FrameRate )
 import Video.HandBrake.FrameSize      ( FrameSize )
 import Video.HandBrake.PixelAspect    ( PixelAspect )
-import Video.HandBrake.REMatch        ( REMatch(..) )
 import Video.HandBrake.Subtitle       ( Subtitle )
 
 --------------------------------------------------------------------------------
-
--- Chapter ---------------------------------------------------------------------
-
-data Cells = Cells Word8 Word8
-$( deriveJSON defaultOptions ''Cells )
-
-instance Show Cells where
-  show (Cells begin end) = show begin ++ "->" ++ show end
-
-instance REMatch Cells where
-  re    = Cells <$> decimal <*> (string "->" *> decimal)
-  parse = parseREMatch "cells"
-
-type Blocks = Word16
-
-data Chapter = Chapter Word8 Cells Blocks Duration
-
-$( deriveJSON defaultOptions ''Chapter )
-
-instance Show Chapter where
-  show (Chapter i c b d) = show i ++ " - cells: " ++ show c ++ ", " ++ show b ++ " blocks " ++ show d
-
-instance REMatch Chapter where
-  re    = Chapter <$> (decimal <* string ": ") <*>
-                      (string "cells " *> re <* string ", ") <*>
-                      (decimal <* string " blocks, ") <*>
-                      (string "duration " *> re)
-  parse = parseREMatch "chapter"
 
 -- Title -----------------------------------------------------------------------
 

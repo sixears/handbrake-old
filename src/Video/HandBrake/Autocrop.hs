@@ -2,6 +2,10 @@ module Video.HandBrake.Autocrop
   ( Autocrop( Autocrop ) )
 where
 
+-- aeson -------------------------------
+
+import Data.Aeson        ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
+
 -- base --------------------------------
 
 import Data.Word            ( Word16 )
@@ -12,13 +16,11 @@ import Text.Printf          ( printf )
 import Text.Regex.Applicative         ( string )
 import Text.Regex.Applicative.Common  ( decimal )
 
--- handbrake ---------------------------
+-- local packages ------------------------------------------
 
-import Data.Aeson        ( FromJSON( parseJSON )
-                         , ToJSON  ( toJSON )
-                         )
+-- fluffy ------------------------------
 
-import Video.HandBrake.REMatch  ( REMatch(..), toJSONString, parseJSONString )
+import Fluffy.Text.Regex  ( REMatch(..), parseJSONString, toJSONString )
 
 -- Autocrop --------------------------------------------------------------------
 

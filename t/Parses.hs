@@ -2,12 +2,12 @@
 
 import Video.HandBrake.Audio          ( Audio( Audio ) )
 import Video.HandBrake.Autocrop       ( Autocrop( Autocrop ) )
+import Video.HandBrake.Chapter        ( Cells( Cells ), Chapter( Chapter ) )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect( DisplayAspect ) )
 import Video.HandBrake.Duration       ( Duration( Duration ) )
 import Video.HandBrake.FrameRate      ( FrameRate( FrameRate ) )
 import Video.HandBrake.FrameSize      ( FrameSize( FrameSize ) )
 import Video.HandBrake.PixelAspect    ( PixelAspect( PixelAspect ) )
-import Video.HandBrake.REMatch        ( parse )
 import Video.HandBrake.Subtitle       ( Subtitle( Subtitle ) )
 
 -- aeson -------------------------------
@@ -26,14 +26,24 @@ import Test.Tasty  ( TestTree, defaultMain, testGroup )
 
 import Test.Tasty.HUnit ( (@?=), testCase )
 
+-- local imports -------------------------------------------
+
+-- fluffy ------------------------------
+
+import qualified  Fluffy.Text.Regex  as  RE
+
 --------------------------------------------------------------------------------
 
 main :: IO ()
 main = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect
-                          , framerate, framesize, duration, audio, subtitle ]
+tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect, framerate
+                          , framesize, duration, audio, subtitle, chapter
+                          ]
+
+parse :: (RE.REMatch r) => String -> Maybe r
+parse = RE.parse
 
 ----------------------------------------
 
@@ -115,7 +125,9 @@ duration =
   testGroup "Duration hunit tests"
             [
               testCase                                                 "parse" $
-                parse "24:11:1" @?= Just (Duration 87061)
+                parse "24:11:1"   @?= Just (Duration 87061)
+            , testCase                                                 "parse" $
+                parse "24h16m11s" @?= Just (Duration 87371)
             , testCase                                                "encode" $
                 encode (Duration 11111) @?= "\"3h05m11s\""
             , testCase                                                "decode" $
@@ -123,7 +135,6 @@ duration =
             ]
 
 ----------------------------------------
-
 
 audio :: TestTree
 audio =
@@ -155,6 +166,25 @@ subtitle =
             , testCase                                                "decode" $
                 decode "[ \"3, also nonsense\" ]"
                   @?= Just [ Subtitle 3 "also nonsense" ]
+            ]
+
+----------------------------------------
+
+chapter :: TestTree
+chapter =
+  testGroup "Chapter hunit tests"
+            [
+              testCase                                                 "parse" $
+                parse "4: cells 0->1, 256 blocks, duration 103:48:57"
+                  @?= Just (Chapter 4 (Cells 0 1) 256 (Duration 373737))
+            , testCase                                                "encode" $
+                encode (Chapter 4 (Cells 0 1) 256 (Duration 3737))
+                  @?= "\"Chapter  4:  1h02m17s     256 blocks cells 0->1\""
+            , testCase                                                "decode" $
+                decode "[ \"Chapter 13: 1h23m45s 12345 blocks cells 4->6\" ]"
+--                decode "[ \"Chapter 13:1h23m45s 12345 cells 4->6\" ]"
+--                decode "[ \"3: cells 4->6, 12345 blocks, duration 1:23:45\" ]"
+                  @?= Just [ Chapter 13 (Cells 4 6) 12345 (Duration 5025) ]
             ]
 
 ----------------------------------------

@@ -2,6 +2,10 @@ module Video.HandBrake.PixelAspect
   ( PixelAspect( PixelAspect ) )
 where
 
+-- aeson -------------------------------
+
+import Data.Aeson  ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
+
 -- base --------------------------------
 
 import Data.Ratio           ( Ratio, (%), numerator, denominator )
@@ -13,13 +17,9 @@ import Text.Printf          ( printf )
 import Text.Regex.Applicative         ( string )
 import Text.Regex.Applicative.Common  ( decimal )
 
--- handbrake ---------------------------
+-- fluffy ------------------------------
 
-import Data.Aeson        ( FromJSON( parseJSON )
-                         , ToJSON  ( toJSON )
-                         )
-
-import Video.HandBrake.REMatch  ( REMatch(..), toJSONString, parseJSONString )
+import Fluffy.Text.Regex  ( REMatch(..), toJSONString, parseJSONString )
 
 -- PixelAspect -----------------------------------------------------------------
 

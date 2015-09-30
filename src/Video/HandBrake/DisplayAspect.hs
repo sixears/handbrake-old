@@ -2,23 +2,19 @@ module Video.HandBrake.DisplayAspect
   ( DisplayAspect( DisplayAspect ) )
 where
 
+-- aeson -------------------------------
+
+import Data.Aeson  ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
+
 -- base --------------------------------
 
-import Text.Printf          ( printf )
+import Text.Printf  ( printf )
 
 -- local imports ---------------------------------------------------------------
 
 -- fluffy ------------------------------
 
-import Fluffy.Text.Regex  ( frac )
-
--- handbrake ---------------------------
-
-import Data.Aeson        ( FromJSON( parseJSON )
-                         , ToJSON  ( toJSON )
-                         )
-
-import Video.HandBrake.REMatch  ( REMatch(..), toJSONString, parseJSONString )
+import Fluffy.Text.Regex  ( REMatch(..), frac, parseJSONString, toJSONString )
 
 -- DisplayAspect ---------------------------------------------------------------
 
