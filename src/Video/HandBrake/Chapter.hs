@@ -1,13 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell   #-}
 
 module Video.HandBrake.Chapter
-  ( Cells( Cells ), Chapter( Chapter ) )
+  ( Chapter( Chapter ) )
 where
 
 -- aeson -------------------------------
 
-import Data.Aeson        ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
+import Data.Aeson        ( FromJSON( parseJSON ), ToJSON ( toJSON ) )
 import Data.Aeson.Types  ( Value( String ) )
 
 -- base --------------------------------
@@ -23,12 +22,12 @@ import Formatting.Formatters  ( left )
 
 -- regex -------------------------------
 
-import Text.Regex.Applicative         ( psym, some, string )
+import Text.Regex.Applicative         ( psym, some )
 import Text.Regex.Applicative.Common  ( decimal )
 
 -- text --------------------------------
 
-import Data.Text  ( Text )
+import Data.Text  ( Text, unpack )
 
 -- local imports -------------------------------------------
 
@@ -38,24 +37,8 @@ import Fluffy.Text.Regex  ( REMatch(..), parseJSONString )
 
 -- handbrake ---------------------------
 
+import Video.HandBrake.Cells       ( Cells )
 import Video.HandBrake.Duration    ( Duration )
-
--- Cells -----------------------------------------------------------------------
-
-
-data Cells = Cells Word8 Word8
-  deriving Eq
-
-
-instance Show Cells where
-  show (Cells begin end) = show begin ++ "->" ++ show end
-
-instance REMatch Cells where
-  re    = Cells <$> decimal <*> (string "->" *> decimal)
-  parse = parseREMatch "cells"
-
-instance FromJSON Cells where
-  parseJSON = parseJSONString
 
 -- Chapter ---------------------------------------------------------------------
 
@@ -68,27 +51,6 @@ data Chapter = Chapter { chpid    :: Word8
                        }
   deriving Eq
 
-instance Show Chapter where
-  show (Chapter i c b d) = show i ++ " - cells: " ++ show c ++ ", " ++ show b ++ " blocks " ++ show d
-
--- XXX use IsString (Overloaded Strings) to auto-apply string in regexen ?
--- XXX split out Cells.hs
--- XXX clean up, hlint
-
-instance REMatch Chapter where
-  re    = let whitespace = some (psym isSpace)
-              reNative = Chapter <$> (decimal <* string ": ") <*>
-                                     (string "cells " *> re <* string ", ") <*>
-                                     (decimal <* string " blocks, ") <*>
-                                     (string "duration " *> re)
-              chapter i d b c = Chapter i c b d
-              reLocal  = chapter <$> (string "Chapter" *> whitespace *> decimal)
-                                 <*> (string ":" *> whitespace *> re)
-                                 <*> (whitespace *> decimal <* string " blocks ")
-                                 <*> (string "cells " *> re)
-           in reLocal <|> reNative
-  parse = parseREMatch "chapter"
-
 showt :: Chapter -> Text
 showt c =
   sformat ("Chapter " % (pad 2 %. int) % ": " % (pad 9 %. shown)
@@ -96,6 +58,26 @@ showt c =
                         (chpid c)               (duration c)
                                 (blocks c)                          (cells c)
   where pad n = left n ' '
+
+instance Show Chapter where
+  show = unpack . showt
+
+-- XXX split out Cells.hs
+-- XXX clean up, hlint
+
+instance REMatch Chapter where
+  re    = let whitespace = some (psym isSpace)
+              reNative = Chapter <$> (decimal <* ": ") 
+                                 <*> ("cells " *> re <* ", ") 
+                                 <*> (decimal <* " blocks, ") 
+                                 <*> ("duration " *> re)
+              chapter i d b c = Chapter i c b d
+              reLocal  = chapter <$> ("Chapter" *> whitespace *> decimal)
+                                 <*> (":" *> whitespace *> re)
+                                 <*> (whitespace *> decimal <* " blocks ")
+                                 <*> ("cells " *> re)
+           in reLocal <|> reNative
+  parse = parseREMatch "chapter"
 
 instance ToJSON Chapter where
   toJSON = String . showt

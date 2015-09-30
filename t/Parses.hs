@@ -2,7 +2,8 @@
 
 import Video.HandBrake.Audio          ( Audio( Audio ) )
 import Video.HandBrake.Autocrop       ( Autocrop( Autocrop ) )
-import Video.HandBrake.Chapter        ( Cells( Cells ), Chapter( Chapter ) )
+import Video.HandBrake.Cells          ( Cells( Cells ) )
+import Video.HandBrake.Chapter        ( Chapter( Chapter ) )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect( DisplayAspect ) )
 import Video.HandBrake.Duration       ( Duration( Duration ) )
 import Video.HandBrake.FrameRate      ( FrameRate( FrameRate ) )
@@ -39,7 +40,7 @@ main = defaultMain tests
 
 tests :: TestTree
 tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect, framerate
-                          , framesize, duration, audio, subtitle, chapter
+                          , framesize, duration, audio, subtitle, cells, chapter
                           ]
 
 parse :: (RE.REMatch r) => String -> Maybe r
@@ -170,6 +171,22 @@ subtitle =
 
 ----------------------------------------
 
+cells :: TestTree
+cells =
+  testGroup "Cells hunit tests"
+            [
+              testCase                                                 "parse" $
+                parse "0->1" @?= Just (Cells 0 1)
+            , testCase                                                "encode" $
+                encode (Cells 0 1) @?= "\"0->1\""
+            , testCase                                                "decode" $
+                decode "[ \"4->6\" ]" @?= Just [ Cells 4 6 ]
+            , testCase                                                  "show" $
+                show (Cells 0 2) @?= "0->2"
+            ]
+
+----------------------------------------
+
 chapter :: TestTree
 chapter =
   testGroup "Chapter hunit tests"
@@ -182,9 +199,10 @@ chapter =
                   @?= "\"Chapter  4:  1h02m17s     256 blocks cells 0->1\""
             , testCase                                                "decode" $
                 decode "[ \"Chapter 13: 1h23m45s 12345 blocks cells 4->6\" ]"
---                decode "[ \"Chapter 13:1h23m45s 12345 cells 4->6\" ]"
---                decode "[ \"3: cells 4->6, 12345 blocks, duration 1:23:45\" ]"
                   @?= Just [ Chapter 13 (Cells 4 6) 12345 (Duration 5025) ]
+            , testCase                                                  "show" $
+                show (Chapter 5 (Cells 0 2) 257 (Duration 3600))
+                  @?= "Chapter  5:        1h     257 blocks cells 0->2"
             ]
 
 ----------------------------------------
