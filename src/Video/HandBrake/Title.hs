@@ -16,7 +16,7 @@ import Data.Aeson.TH     ( deriveJSON, defaultOptions )
 
 -- base --------------------------------
 
-import Control.Monad        ( foldM )
+import Control.Monad        ( foldM, unless )
 import Data.Word            ( Word8 )
 import Text.Printf          ( printf )
 
@@ -96,7 +96,7 @@ instance Showable String where
   showit = id
 
 instance Showable [(Int, String)] where
-  showit as = unlines $ fmap (\ (k, v) -> printf " - %02d - %8s" k v) as
+  showit as = unlines $ fmap (uncurry (printf " - %02d - %8s")) as
 
 instance REMatch Title where
   re    = newTitle <$> (string "title " *> decimal) <* string ":"
@@ -114,17 +114,15 @@ appUnp tree title = title & unparsed %~ (tree:)
 treeDepth :: Tree x -> Int
 treeDepth t = case t ^. branches of
                 [] -> 1
-                bs -> 1 + (maximum $ fmap treeDepth bs)
+                bs -> 1 + maximum (fmap treeDepth bs)
 
 -- | check the depth of a tree is as expected
 checkDepths :: MonadThrow m => Int -> Int -> Tree String -> m ()
 checkDepths low high t =
   let d = treeDepth t
-   in if d >= low && d <= high
-      then return ()
-      else dieParse $
-             printf "failed to parse tree; got depth %d, expected %d-%d\n%s"
-                    d low high (drawTree t)
+   in unless (d >= low && d <= high) . dieParse $
+        printf "failed to parse tree; got depth %d, expected %d-%d\n%s"
+               d low high (drawTree t)
 
 checkDepth :: MonadThrow m => Int -> Tree String -> m ()
 checkDepth n = checkDepths n n
@@ -135,7 +133,7 @@ parseMany :: (MonadThrow m, REMatch x) =>
              Int -> Int -> Tree String -> m [x]
 parseMany low high t = do
   checkDepths low high t
-  mapM parse (map (view root) $ t ^. branches)
+  mapM (parse . view root) (t ^. branches)
 
 parseChapters :: MonadThrow m => Tree String -> m [Chapter]
 -- we require some chapters, so there has to be a depth of two
@@ -188,7 +186,7 @@ unsetDetails t =
 
 -- | set details if Just x; unset details if Nothing
 maybeSetDetails :: Title -> Maybe Details -> Title
-maybeSetDetails t m_det = maybe (unsetDetails t) (setDetails t) m_det
+maybeSetDetails t = maybe (unsetDetails t) (setDetails t)
 
 -- | lens onto details of title as a single thing; details will appear to be Nothing
 --   if any member is Nothing

@@ -15,7 +15,7 @@ import Control.Applicative  ( (<|>), optional )
 import Control.Exception    ( Exception )
 import Control.Monad        ( mzero )
 import Data.List            ( find )
-import Data.Maybe           ( catMaybes )
+import Data.Maybe           ( catMaybes, fromMaybe )
 import Data.Word            ( Word8, Word32 )
 
 -- lens --------------------------------
@@ -70,7 +70,7 @@ durationMultiplier c = fmap (view _2) $ find ((== c) . view _1) durationSuffices
 
 durationMultiplier' :: Integral i => Char -> i
 durationMultiplier' c =
-  fromIntegral $ maybe (error $ wrongSuffixError c) id $ durationMultiplier c
+  fromIntegral . fromMaybe (error $ wrongSuffixError c) $ durationMultiplier c
 
 parseDur :: [(Int,Char)] -> Duration
 parseDur =

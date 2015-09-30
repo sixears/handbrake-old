@@ -62,7 +62,6 @@ showt c =
 instance Show Chapter where
   show = unpack . showt
 
--- XXX split out Cells.hs
 -- XXX clean up, hlint
 
 instance REMatch Chapter where
