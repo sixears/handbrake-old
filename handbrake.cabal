@@ -54,6 +54,7 @@ library
                        Video.HandBrake.Autocrop,
                        Video.HandBrake.Cells,
                        Video.HandBrake.Chapter,
+                       Video.HandBrake.Details,
                        Video.HandBrake.DisplayAspect,
                        Video.HandBrake.Duration,
                        Video.HandBrake.FrameRate,

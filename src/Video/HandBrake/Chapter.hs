@@ -62,8 +62,6 @@ showt c =
 instance Show Chapter where
   show = unpack . showt
 
--- XXX clean up, hlint
-
 instance REMatch Chapter where
   re    = let whitespace = some (psym isSpace)
               reNative = Chapter <$> (decimal <* ": ") 

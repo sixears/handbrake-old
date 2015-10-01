@@ -7,8 +7,6 @@ module Video.HandBrake.Title
   ( Title, mkTitle )
 where
 
--- use yaml
-
 -- aeson -------------------------------
 
 import Data.Aeson        ( ToJSON  ( toJSON ) )
@@ -35,7 +33,7 @@ import Control.Monad.Catch  ( MonadThrow )
 -- lens --------------------------------
 
 import Control.Lens    ( Lens'
-                       , (&), (%~), (^.), (?~), (.~)
+                       , (&), (%~), (^.), (?~)
                        , makeLenses, set, view
                        )
 import Data.Tree.Lens  ( branches, root )
@@ -62,11 +60,8 @@ import Fluffy.Text.Regex  ( REMatch(..) )
 import Video.HandBrake.Audio          ( Audio )
 import Video.HandBrake.Autocrop       ( Autocrop )
 import Video.HandBrake.Chapter        ( Chapter )
-import Video.HandBrake.DisplayAspect  ( DisplayAspect )
+import Video.HandBrake.Details        ( Details )
 import Video.HandBrake.Duration       ( Duration )
-import Video.HandBrake.FrameRate      ( FrameRate )
-import Video.HandBrake.FrameSize      ( FrameSize )
-import Video.HandBrake.PixelAspect    ( PixelAspect )
 import Video.HandBrake.Subtitle       ( Subtitle )
 
 --------------------------------------------------------------------------------
@@ -79,10 +74,7 @@ data Title = Title { _titleid   :: !Word8
                    , _subtitles :: ![Subtitle]
                    , _audios    :: ![Audio]
                    , _autocrop  :: !(Maybe Autocrop)
-                   , _pixasp    :: !(Maybe PixelAspect)
-                   , _framesize :: !(Maybe FrameSize)
-                   , _framerate :: !(Maybe FrameRate)
-                   , _dispasp   :: !(Maybe DisplayAspect)
+                   , _details   :: !(Maybe Details)
                    , _unparsed  :: [Tree String]
                    }
 
@@ -106,7 +98,7 @@ instance Show Title where
   show = BS.unpack . encode . toJSON
 
 newTitle :: Word8 -> Title
-newTitle ti = Title ti Nothing [] [] [] Nothing Nothing Nothing Nothing Nothing []
+newTitle ti = Title ti Nothing [] [] [] Nothing Nothing []
 
 appUnp :: Tree String -> Title -> Title
 appUnp tree title = title & unparsed %~ (tree:)
@@ -151,52 +143,6 @@ parseAudios :: MonadThrow m => Tree String -> m [Audio]
 parseAudios = parseMany 1 2
 
 ------------------------------------------------------------
-
-type Details = (FrameSize, PixelAspect, DisplayAspect, FrameRate)
-
-instance REMatch Details where
-  re = (,,,) <$> re
-             <*> (string ", pixel aspect: "   *> re)
-             <*> (string ", display aspect: " *> re)
-             <*> (string ", " *> re)
-  parse = parseREMatch "details"
-
-getDetails :: Title -> Maybe Details
-getDetails title = do
-  pa <- title ^. pixasp
-  fr <- title ^. framerate
-  fs <- title ^. framesize
-  da <- title ^. dispasp
-  return (fs, pa, da, fr)
-
-setDetails :: Title -> (FrameSize, PixelAspect, DisplayAspect, FrameRate)
-           -> Title
-setDetails t (size, pixel_aspect, display_aspect, rate) =
-  t & pixasp    ?~ pixel_aspect
-    & framerate ?~ rate
-    & framesize ?~ size
-    & dispasp   ?~ display_aspect
-
-unsetDetails :: Title -> Title
-unsetDetails t =
-  t & pixasp    .~ Nothing
-    & framerate .~ Nothing
-    & framesize .~ Nothing
-    & dispasp   .~ Nothing
-
--- | set details if Just x; unset details if Nothing
-maybeSetDetails :: Title -> Maybe Details -> Title
-maybeSetDetails t = maybe (unsetDetails t) (setDetails t)
-
--- | lens onto details of title as a single thing; details will appear to be Nothing
---   if any member is Nothing
-details :: Functor f => (Maybe Details -> f (Maybe Details)) -> Title -> f Title
-details f t =
-  let f_det = f (getDetails t)
-      ff :: Maybe Details -> Title
-      ff = maybeSetDetails t
-   in ff <$> f_det
-
 
 addDetail :: MonadThrow m => Title -> Tree String -> m Title
 addDetail t branch =

@@ -26,7 +26,7 @@ newtype FrameRate = FrameRate Float -- in fps
   deriving Eq
 
 instance Show FrameRate where
-  show (FrameRate f) = dtrim $ printf "%3.2ffps" f
+  show (FrameRate f) = dtrim (printf "%3.2f" f) ++ "fps"
 
 instance REMatch FrameRate where
   re    = FrameRate <$> frac <* many (sym ' ') <* string "fps"

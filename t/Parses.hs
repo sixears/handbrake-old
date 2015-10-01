@@ -4,6 +4,7 @@ import Video.HandBrake.Audio          ( Audio( Audio ) )
 import Video.HandBrake.Autocrop       ( Autocrop( Autocrop ) )
 import Video.HandBrake.Cells          ( Cells( Cells ) )
 import Video.HandBrake.Chapter        ( Chapter( Chapter ) )
+import Video.HandBrake.Details        ( Details( Details ) )
 import Video.HandBrake.DisplayAspect  ( DisplayAspect( DisplayAspect ) )
 import Video.HandBrake.Duration       ( Duration( Duration ) )
 import Video.HandBrake.FrameRate      ( FrameRate( FrameRate ) )
@@ -41,6 +42,7 @@ main = defaultMain tests
 tests :: TestTree
 tests = testGroup "Tests" [ pixel_aspect, autocrop, display_aspect, framerate
                           , framesize, duration, audio, subtitle, cells, chapter
+                          , details
                           ]
 
 parse :: (RE.REMatch r) => String -> Maybe r
@@ -100,7 +102,7 @@ framerate =
                 parse "3.2fps" @?= Just (FrameRate 3.2)
             , testCase                                                "encode" $
                 -- framerate shown to two decimal places
-                encode (FrameRate 8.9) @?= "\"8.90fps\""
+                encode (FrameRate 8.9) @?= "\"8.9fps\""
             , testCase                                                "decode" $
                 decode "[ \"7.1fps\" ]" @?= Just [ FrameRate 7.1 ]
             ]
@@ -203,6 +205,33 @@ chapter =
             , testCase                                                  "show" $
                 show (Chapter 5 (Cells 0 2) 257 (Duration 3600))
                   @?= "Chapter  5:        1h     257 blocks cells 0->2"
+            ]
+
+----------------------------------------
+
+details :: TestTree
+details =
+  testGroup "Details hunit tests"
+            [
+              testCase                                                 "parse" $
+                parse "16x9, pixel aspect: 8/9, display aspect: 2.3, 7.1fps"
+                  @?= Just (Details (FrameSize 16 9)
+                                    (PixelAspect (8%9))
+                                    (DisplayAspect 2.3)
+                                    (FrameRate 7.1)
+                           )
+            , testCase                                                "encode" $
+                encode (Details (FrameSize 9 16)    (PixelAspect (9%8))
+                                (DisplayAspect 3.2) (FrameRate 1.7))
+                  @?= "\"9x16, 9/8, 3.2, 1.7fps\""
+            , testCase                                                "decode" $
+                decode "[ \"8x6, 8/6, 1.0, 06.60fps\" ]"
+                  @?= Just [ Details (FrameSize 8 6)   (PixelAspect (4%3))
+                                     (DisplayAspect 1) (FrameRate 6.6)     ]
+            , testCase                                                  "show" $
+                show (Details (FrameSize 8 6)   (PixelAspect (8%6))
+                              (DisplayAspect 1.0) (FrameRate 06.60)     )
+                  @?= "8x6, 4/3, 1, 6.6fps"
             ]
 
 ----------------------------------------
