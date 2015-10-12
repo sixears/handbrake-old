@@ -11,6 +11,10 @@ import Data.Aeson  ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
 import Data.Word    ( Word16 )
 import Text.Printf  ( printf )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary(..) )
+
 -- regex -------------------------------
 
 import Text.Regex.Applicative         ( string )
@@ -40,3 +44,7 @@ instance FromJSON FrameSize where
 instance ToJSON FrameSize where
   toJSON = toJSONString
 
+instance Arbitrary FrameSize where
+  arbitrary = do a <- arbitrary
+                 b <- arbitrary
+                 return $ FrameSize a b

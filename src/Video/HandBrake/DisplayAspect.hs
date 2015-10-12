@@ -10,6 +10,10 @@ import Data.Aeson  ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
 
 import Text.Printf  ( printf )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary(..) )
+
 -- local imports ---------------------------------------------------------------
 
 -- fluffy ------------------------------
@@ -34,6 +38,8 @@ instance FromJSON DisplayAspect where
 instance ToJSON DisplayAspect where
   toJSON = toJSONString
 
+instance Arbitrary DisplayAspect where
+  arbitrary = fmap DisplayAspect arbitrary
 
 --------------------------------------------------------------------------------
 

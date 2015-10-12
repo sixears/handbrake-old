@@ -12,6 +12,10 @@ import Data.Ratio           ( Ratio, (%), numerator, denominator )
 import Data.Word            ( Word8 )
 import Text.Printf          ( printf )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary(..), choose )
+
 -- regex -------------------------------
 
 import Text.Regex.Applicative         ( string )
@@ -39,3 +43,7 @@ instance FromJSON PixelAspect where
 instance Show PixelAspect where
   show (PixelAspect p) = printf "%d/%d" (numerator p) (denominator p)
 
+instance Arbitrary PixelAspect where
+  arbitrary = do n <- choose (0,maxBound)
+                 d <- choose (1,maxBound)
+                 return (PixelAspect (n%d))

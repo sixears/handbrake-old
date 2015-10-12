@@ -10,6 +10,10 @@ import Data.Aeson  ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
 
 import Text.Printf  ( printf )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary(..), Gen, choose )
+
 -- regex -------------------------------
 
 import Text.Regex.Applicative  ( many, string, sym )
@@ -37,6 +41,12 @@ instance FromJSON FrameRate where
 
 instance ToJSON FrameRate where
   toJSON = toJSONString
+
+instance Arbitrary FrameRate where
+  -- generate an arbitrary value between 0 & 100, with up to two decimal places
+  arbitrary = do a <- choose (0,100) :: Gen Int
+                 b <- choose (0,100) :: Gen Int
+                 return $ FrameRate (fromIntegral a + fromIntegral b / 100.0)
 
 --------------------------------------------------------------------------------
 

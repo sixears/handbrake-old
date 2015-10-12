@@ -17,6 +17,10 @@ import Control.Applicative  ( (<|>) )
 
 import Formatting  ( (%), sformat, shown )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary(..) )
+
 -- text --------------------------------
 
 import Data.Text  ( Text, unpack )
@@ -61,3 +65,10 @@ instance ToJSON Details where
 
 instance FromJSON Details where
   parseJSON = parseJSONString
+
+instance Arbitrary Details where
+  arbitrary = do fs <- arbitrary
+                 pa <- arbitrary
+                 da <- arbitrary
+                 fr <- arbitrary
+                 return $ Details fs pa da fr

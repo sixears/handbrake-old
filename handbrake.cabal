@@ -80,14 +80,15 @@ library
                        exceptions           == 0.8.*,
                        formatting           == 6.2.*,
                        lens                 == 4.9.*,
+                       QuickCheck           >= 2.8.1,
                        regex-applicative    == 0.3.*,
                        text                 == 1.2.*,
  -- needed temporarily for Duration Formatting
-                       text-format          == 0.3.*,
+ --                      text-format          == 0.3.*,
                        time                 == 1.5.*,
                        yaml                 == 0.8.*,
 
-                       fluffy               >= 0.2.1.0
+                       fluffy               >= 0.2.3.0
 
   -- Directories containing source files.
   hs-source-dirs:      src
@@ -118,9 +119,11 @@ test-suite parses
   hs-source-dirs:      t
   build-depends:       aeson,
                        base,
+                       bytestring,
                        regex-applicative,
                        tasty              == 0.10.*,
                        tasty-hunit        == 0.9.*,
+                       tasty-quickcheck   >= 0.8.3.2,
                        text,
 
                        fluffy, handbrake
