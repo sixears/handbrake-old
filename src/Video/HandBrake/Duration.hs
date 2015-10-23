@@ -22,6 +22,10 @@ import Data.Word            ( Word8, Word32 )
 
 import Control.Lens  ( _1, _2, view )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary( arbitrary ) )
+
 -- regex -------------------------------
 
 import Text.Regex.Applicative         ( RE, sym, string )
@@ -96,3 +100,6 @@ instance REMatch Duration where
                             )
 
   parse = parseREMatch "duration"
+
+instance Arbitrary Duration where
+  arbitrary = fmap Duration arbitrary

@@ -13,6 +13,7 @@ import Video.HandBrake.FrameRate      ( FrameRate( FrameRate ) )
 import Video.HandBrake.FrameSize      ( FrameSize( FrameSize ) )
 import Video.HandBrake.PixelAspect    ( PixelAspect( PixelAspect ) )
 import Video.HandBrake.Subtitle       ( Subtitle( Subtitle ) )
+import Video.HandBrake.Title          ( ID( ID ), Title, newTitle )
 
 -- aeson -------------------------------
 
@@ -20,9 +21,14 @@ import Data.Aeson  ( FromJSON, ToJSON, encode, decode )
 
 -- base --------------------------------
 
-import Data.Function  ( on )
+-- import Data.Function  ( on )
 import Data.Maybe     ( fromJust )
 import Data.Ratio     ( (%) )
+
+-- bytestring --------------------------
+
+import qualified  Data.ByteString.Lazy        as  BS
+-- import qualified  Data.ByteString.Lazy.Char8  as  BSS
 
 -- tasty -------------------------------
 
@@ -42,6 +48,8 @@ import Test.Tasty.QuickCheck as QC
 
 import qualified  Fluffy.Text.Regex  as  RE
 
+-- import Fluffy.Data.Fractional  ( floatIsh )
+
 --------------------------------------------------------------------------------
 
 main :: IO ()
@@ -54,13 +62,13 @@ unitTests :: TestTree
 unitTests = testGroup "unitTests"
                       [ pixel_aspect, autocrop, display_aspect, framerate
                       , framesize, duration, audio, subtitle, cells, chapter
-                      , details
+                      , details, title, id_
                       ]
 
 propTests :: TestTree
 propTests = testGroup "propTests"
                       [ pixelAspectProps, displayAspectProps, frameRateProps
-                      , frameSizeProps, detailsProps ]
+                      , frameSizeProps, detailsProps ] --, titleProps ]
 
 parse :: (RE.REMatch r) => String -> Maybe r
 parse = RE.parse
@@ -93,18 +101,12 @@ instance Floaty a => Floaty (Maybe a) where
 instance Floaty a => Floaty (Maybe [a]) where
   extract = extract . head . fromJust
 
--- test floats for "equality", dealing with floating-point imprecision by looking
--- for a minimal difference relative to the size of the original value
-floatIsh :: Float -> Float -> Bool
-floatIsh a b |  b == 0     = (abs a) < 1e-6
-             |  otherwise  = abs ((a - b) / b) < 1e-6
-
-floatyIsh :: Floaty f => f -> f -> Bool
-floatyIsh = floatIsh `on` extract
+-- floatyIsh :: Floaty f => f -> f -> Bool
+-- floatyIsh = floatIsh `on` extract
 
 -- cannot use the instance of Floaty Maybe [a] without hitting overlapping instances
-floatyIshML :: Floaty f => Maybe [f] -> Maybe [f] -> Bool
-floatyIshML = floatIsh `on` (extract . head . fromJust)
+-- floatyIshML :: Floaty f => Maybe [f] -> Maybe [f] -> Bool
+-- floatyIshML = floatIsh `on` (extract . head . fromJust)
 
 --------------------------------------------------------------------------------
 
@@ -166,9 +168,9 @@ displayAspectProps :: TestTree
 displayAspectProps =
   testGroup "displayAspectProps"
     [ QC.testProperty                                           "parse . show" $
-        \(da :: DisplayAspect) -> parse_show' floatyIsh da
+        \(da :: DisplayAspect) -> parse_show da -- parse_show' floatyIsh da
     , QC.testProperty                                        "decode . encode" $
-        \(da :: DisplayAspect) -> decode_encode' floatyIshML da
+        \(da :: DisplayAspect) -> decode_encode da -- decode_encode' floatyIshML da
     ]
 
 ----------------------------------------
@@ -273,13 +275,13 @@ cells :: TestTree
 cells =
   testGroup "Cells hunit tests"
             [ testCase                                                 "parse" $
-                parse "0->1" @?= Just (Cells 0 1)
+                parse "0-1" @?= Just (Cells 0 1)
             , testCase                                                "encode" $
-                encode (Cells 0 1) @?= "\"0->1\""
+                encode (Cells 0 1) @?= "\"0-1\""
             , testCase                                                "decode" $
-                decode "[ \"4->6\" ]" @?= Just [ Cells 4 6 ]
+                decode "[ \"4-6\" ]" @?= Just [ Cells 4 6 ]
             , testCase                                                  "show" $
-                show (Cells 0 2) @?= "0->2"
+                show (Cells 0 2) @?= "0-2"
             ]
 
 ----------------------------------------
@@ -288,17 +290,17 @@ chapter :: TestTree
 chapter =
   testGroup "Chapter hunit tests"
             [ testCase                                                 "parse" $
-                parse "4: cells 0->1, 256 blocks, duration 103:48:57"
+                parse "4: cells 0-1, 256 blocks, duration 103:48:57"
                   @?= Just (Chapter 4 (Cells 0 1) 256 (Duration 373737))
             , testCase                                                "encode" $
                 encode (Chapter 4 (Cells 0 1) 256 (Duration 3737))
-                  @?= "\"Chapter  4:  1h02m17s     256 blocks cells 0->1\""
+                  @?= "\"Chapter  4:  1h02m17s     256 blocks cells 0-1\""
             , testCase                                                "decode" $
-                decode "[ \"Chapter 13: 1h23m45s 12345 blocks cells 4->6\" ]"
+                decode "[ \"Chapter 13: 1h23m45s 12345 blocks cells 4-6\" ]"
                   @?= Just [ Chapter 13 (Cells 4 6) 12345 (Duration 5025) ]
             , testCase                                                  "show" $
                 show (Chapter 5 (Cells 0 2) 257 (Duration 3600))
-                  @?= "Chapter  5:        1h     257 blocks cells 0->2"
+                  @?= "Chapter  5:        1h     257 blocks cells 0-2"
             ]
 
 ----------------------------------------
@@ -329,21 +331,141 @@ details =
 
 ----------------------------------------
 
-diffDetails :: Maybe Details -> Maybe Details -> Bool
-diffDetails (Just (Details fs1 pa1 da1 fr1)) (Just (Details fs2 pa2 da2 fr2)) =
-  and [ fs1 == fs2
-      , pa1 == pa2
-      , floatyIsh da1 da2
-      , fr1 == fr2
-      ]
-diffDetails _ _ = False
+id_ :: TestTree
+id_ =
+  testGroup "ID hunit tests"
+            [ testCase                                                 "parse" $
+                parse "4" @?= Just (ID 4)
+            , testCase                                                "encode" $
+                encode (ID 7) @?= "7"
+            , testCase                                                "decode" $
+                decode "[ 60 ]"
+                  @?= Just [ ID 60 ]
+            , testCase                                                  "show" $
+                show (ID 35) @?= "ID 35"
+            ]
+
+----------------------------------------
+
+title :: TestTree
+title =
+  let title0 = newTitle 0 (Duration 0) [] [] [] (Autocrop 0 0 0 0)
+                          (Details (FrameSize 0 0)
+                                   (PixelAspect (1%1))
+                                   (DisplayAspect 0.0)
+                                   (FrameRate 0.0))
+                          []
+
+      titleBS0 = BS.concat [ "{"
+                           , BS.intercalate ","
+                               (fmap (\ (a,b) -> BS.concat ["\"", a, "\":", b])
+                                     [ ("subtitles", "[]")
+                                     , ("chapters", "[]")
+                                     , ("unparsed", "[]")
+                                     , ("details",  "\"0x0, 1/1, 0, 0fps\"")
+                                     , ("id", "0")
+                                     , ("audios", "[]")
+                                     , ("duration", "\"0s\"")
+                                     , ("autocrop", "\"0/0/0/0\"")
+                                     ])
+                           , "}" ]
+
+      title_ = newTitle 7
+                        (Duration 3661)
+                        [ Chapter 13 (Cells 4 6) 12345 (Duration 5025) ]
+                        [ Audio 2 "blomquist" 23 77 ]
+                        [ Subtitle 3 "more stuff" ]
+                        (Autocrop 9 8 7 6)
+                        (Details (FrameSize 9 16)
+                                        (PixelAspect (9%8))
+                                        (DisplayAspect 3.2)
+                                        (FrameRate 1.7))
+
+                        []
+
+      titleBS = BS.concat [ "{"
+                          , BS.intercalate ","
+                              (fmap (\ (a,b) -> BS.concat ["\"", a, "\":", b])
+                                    [ ("subtitles"
+                                      , "[\"Subtitle 3 # more stuff\"]")
+                                    , ("chapters"
+                                      , BS.concat
+                                          [ "[\"Chapter 13:  1h23m45s   "
+                                          , "12345 blocks cells 4-6\"]" ])
+                                    , ("unparsed", "[]")
+                                    , ("details",  "\"9x16, 9/8, 3.2, 1.7fps\"")
+                                    , ("id", "7")
+                                    , ("audios"
+                                      , "[\"Audio 2: 23Hz 77bps # blomquist\"]")
+                                    , ("duration", "\"1h01m01s\"")
+                                    , ("autocrop", "\"9/8/7/6\"")
+                                    ])
+                          , "}" ]
+
+      titleBS' = BS.concat [ "{"
+                          , BS.intercalate ","
+                              (fmap (\ (a,b) -> BS.concat ["\"", a, "\":", b])
+--                                     [ ("subtitles", "[]")
+                                    [ ("subtitles"
+--                                    , "[\"Subtitle 4 # more stuff\"]")
+                                    , "[\"4, more stuff\"]")
+                                    , ("chapters"
+                                      , BS.concat
+                                          [ "[\"Chapter 13:  1h23m45s   "
+                                          , "12345 blocks cells 4-6\"]" ])
+--                                     , ("chapters", "[]")
+                                    , ("unparsed", "[]")
+                                    , ("details",  "\"0x0, 1/1, 0, 0fps\"")
+                                    , ("id", "0")
+                                    , ("audios", "[]")
+                                    , ("duration", "\"1h01m01s\"")
+                                    , ("autocrop", "\"0/0/0/0\"")
+                                    ])
+                          , "}" ]
+
+   in testGroup "Title hunit tests"
+            [ --A testCase                                            "parse (1)" $
+--A                 parse (BSS.unpack titleBS0)
+--A                   @?= Just title0
+--A             , testCase                                             "parse (2)" $
+--A                 parse (BSS.unpack titleBS)
+--A                   @?= Just title_
+            --A ,
+              testCase                                            "encode (1)" $
+                encode title0 @?=  titleBS0
+            , testCase                                            "encode (2)" $
+                encode title_ @?= titleBS
+
+            , testCase                                            "decode (1)" $
+                decode titleBS0 @?= Just title0
+            , testCase                                            "decode (2)" $
+                decode titleBS'  @?= Just title_
+--A             , testCase                                                  "show" $
+--A                 show (Details (FrameSize 8 6)   (PixelAspect (8%6))
+--A                               (DisplayAspect 1.0) (FrameRate 06.60)     )
+--A                   @?= "8x6, 4/3, 1, 6.6fps"
+            ]
+
+----------------------------------------
 
 detailsProps :: TestTree
 detailsProps =
   testGroup "detailsProps"
     [ QC.testProperty                                             "show-parse" $
-        \(dt :: Details) -> parse_show' diffDetails dt
+        \(dt :: Details) -> parse_show dt
     , QC.testProperty                                          "encode-decode" $
-        \(dt :: Details) -> decode_encode' (diffDetails `on` (fmap head)) dt
+        \(dt :: Details) -> decode_encode dt
     ]
 
+----------------------------------------
+
+titleProps :: TestTree
+titleProps =
+  testGroup "titleProps"
+    [ QC.testProperty                                             "show-parse" $
+        \(ti :: Title) -> parse_show ti
+    , QC.testProperty                                          "encode-decode" $
+        \(ti :: Title) -> decode_encode ti
+    ]
+
+--------------------------------------------------------------------------------

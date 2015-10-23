@@ -20,6 +20,10 @@ import Data.Word            ( Word8, Word16 )
 import Formatting             ( (%), (%.), sformat, int, shown )
 import Formatting.Formatters  ( left )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary(..) )
+
 -- regex -------------------------------
 
 import Text.Regex.Applicative         ( psym, some )
@@ -81,3 +85,10 @@ instance ToJSON Chapter where
 
 instance FromJSON Chapter where
   parseJSON = parseJSONString
+
+instance Arbitrary Chapter where
+  arbitrary = do cid  <- arbitrary
+                 clls <- arbitrary
+                 blks <- arbitrary
+                 dur  <- arbitrary
+                 return $ Chapter cid clls blks dur

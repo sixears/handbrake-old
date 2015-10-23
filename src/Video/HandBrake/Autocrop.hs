@@ -11,6 +11,10 @@ import Data.Aeson        ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
 import Data.Word            ( Word16 )
 import Text.Printf          ( printf )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary( arbitrary ) )
+
 -- regex -------------------------------
 
 import Text.Regex.Applicative         ( string )
@@ -43,3 +47,10 @@ instance FromJSON Autocrop where
 
 instance ToJSON Autocrop where
   toJSON = toJSONString
+
+instance Arbitrary Autocrop where
+  arbitrary = do t <- arbitrary
+                 b <- arbitrary
+                 l <- arbitrary
+                 r <- arbitrary
+                 return $ Autocrop t b l r

@@ -42,11 +42,15 @@ instance FromJSON FrameRate where
 instance ToJSON FrameRate where
   toJSON = toJSONString
 
+mkFR :: Int -> Int -> FrameRate
+mkFR a b = let f = read (printf "%d.%02d" a b)
+            in FrameRate f
+
 instance Arbitrary FrameRate where
   -- generate an arbitrary value between 0 & 100, with up to two decimal places
   arbitrary = do a <- choose (0,100) :: Gen Int
-                 b <- choose (0,100) :: Gen Int
-                 return $ FrameRate (fromIntegral a + fromIntegral b / 100.0)
+                 b <- choose (0,99) :: Gen Int
+                 return $ mkFR a b
 
 --------------------------------------------------------------------------------
 

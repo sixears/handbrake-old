@@ -9,9 +9,15 @@ where
 import Data.Aeson        ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
 import Data.Aeson.Types  ( Value( String ) )
 
+import Debug.Trace
+
 -- formatting --------------------------
 
 import Formatting  ( (%), sformat, int, string )
+
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary( arbitrary ) )
 
 -- regex -------------------------------
 
@@ -36,9 +42,13 @@ instance REMatch Subtitle where
   parse = parseREMatch "subtitle"
 
 instance FromJSON Subtitle where
-  parseJSON = parseJSONString
+  parseJSON s = trace "sub" $ traceShow s $ parseJSONString s
 
 instance ToJSON Subtitle where
   toJSON s = String $ sformat ("Subtitle " % int % " # " % string) (subtid s)
                                                                    (str s)
 
+instance Arbitrary Subtitle where
+  arbitrary = do sid   <- arbitrary
+                 strng <- arbitrary
+                 return $ Subtitle sid strng

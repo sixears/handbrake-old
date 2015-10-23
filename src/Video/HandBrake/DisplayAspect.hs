@@ -8,11 +8,12 @@ import Data.Aeson  ( FromJSON( parseJSON ), ToJSON  ( toJSON ) )
 
 -- base --------------------------------
 
+import Data.Word    ( Word16 )
 import Text.Printf  ( printf )
 
 -- QuickCheck --------------------------
 
-import Test.QuickCheck  ( Arbitrary(..) )
+import Test.QuickCheck  ( Arbitrary(..), Gen, choose )
 
 -- local imports ---------------------------------------------------------------
 
@@ -39,7 +40,10 @@ instance ToJSON DisplayAspect where
   toJSON = toJSONString
 
 instance Arbitrary DisplayAspect where
-  arbitrary = fmap DisplayAspect arbitrary
+  arbitrary = do a <- choose (0,999) :: Gen Word16
+                 b <- choose (0,999) :: Gen Word16
+                 let s = printf "%d.%03d" a b
+                 return $ DisplayAspect . read $ s
 
 --------------------------------------------------------------------------------
 

@@ -17,6 +17,10 @@ import Control.Applicative  ( (<|>) )
 
 import Formatting  ( (%), sformat, int, string )
 
+-- QuickCheck --------------------------
+
+import Test.QuickCheck  ( Arbitrary( arbitrary ) )
+
 -- regex -------------------------------
 
 import qualified Text.Regex.Applicative as RE
@@ -76,3 +80,10 @@ instance FromJSON Audio where
 
 instance ToJSON Audio where
   toJSON = String . showt
+
+instance Arbitrary Audio where
+  arbitrary = do aid  <- arbitrary
+                 msc  <- arbitrary
+                 freq <- arbitrary
+                 bw   <- arbitrary
+                 return $ Audio aid msc freq bw
